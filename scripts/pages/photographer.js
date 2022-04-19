@@ -20,7 +20,19 @@ async function displayPhotographerDecription(photographerId) {
   const photographers = Data.photographers
   const medias = Data.media
   const photographerItem = photographers.find( (element) => element.id == photographerId)
-  console.log(photographerItem);
+  
+  const photographerHeaderSection = document.querySelector('.photograph-header');
+  const photographerHeaderOnHTML = `
+    <div class='photograph-header-left'>
+        <h1 class='card-name'>${photographerItem.name}</h1>
+        <p class='card-location'>${photographerItem.city}, ${photographerItem.country}</p>
+        <p class="card-tagline">${photographerItem.tagline}</p>
+    </div>
+    <div class='photograph-header-right'>
+      <img class="card-image" src="assets/photographers/Photographers ID Photos/${photographerItem.portrait}" alt="${photographerItem.name}">
+    </div>
+  `;
+  photographerHeaderSection.innerHTML += photographerHeaderOnHTML
 }
 const id = getPhotographerIdFromUrl()
 displayPhotographerDecription(id)

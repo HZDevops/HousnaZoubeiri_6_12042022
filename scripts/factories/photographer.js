@@ -22,13 +22,13 @@ export function photographerFactory(data) {
       article.classList.add('card');
 
       const photographerCard = `
-                        <a aria-label="${name}" href="photographer.html?id=${this.id}" id="${this.id}" class="card__general-link">
-                            <img class="card__image" src="${picture}" alt="photo de ${name}">
-                            <h2 aria='hidden' class="card__name">${name}</h2>
+                        <a aria-label="${name}" href="photographer.html?id=${this.id}" id="${this.id}" class="card-link">
+                            <img class="card-image" src="${picture}" alt="photo de ${name}">
+                            <h2 aria='hidden' class="card-name">${name}</h2>
                         </a>
-                        <p class="card__location">${this.city}, ${this.country}</p>
-                        <p class="card__tagline">${this.tagline}</p>
-                        <p class="card__price">${this.price}&euro;/jour</p>`;
+                        <p class="card-location">${this.city}, ${this.country}</p>
+                        <p class="card-tagline">${this.tagline}</p>
+                        <p class="card-price">${this.price}&euro;/jour</p>`;
       article.innerHTML = photographerCard;
       return article;
     },

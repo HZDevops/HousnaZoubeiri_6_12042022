@@ -61,27 +61,27 @@ h1 {
     margin: 3px;
 }
 
-.card__general-link{
+.card-link{
     text-decoration: none;
 }
 
-.card__image {
+.card-image {
     height: 200px;
     width: 200px;
     border-radius: 100px;
     object-fit: cover;
 }
 
-.card__name {
+.card-name {
     font-weight: normal;
     color: #D3573C;
 }
 
-.card__location {
+.card-location {
     color: #901C1C;
     font-weight: 400;
 }
 
-.card__price {
+.card-price {
   color: #525252;
 }
