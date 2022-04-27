@@ -26,6 +26,7 @@ async function displayData(photographers) {
 
 async function init() {
   const photographers  = await getPhotographers()
+  //console.log(data.photographers)
   displayData(photographers)
 }
 

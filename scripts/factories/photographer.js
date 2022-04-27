@@ -1,36 +1,56 @@
 /**
  * Create a photographer object and a photographer card
- * @param {object} data
+ * @param {Object} data
  * @returns {HTMLElement}
  **/
 export function photographerFactory(data) {
-  return {
-    name: data.name,
-    id: data.id,
-    city: data.city,
-    country: data.country,
-    tagline: data.tagline,
-    price: data.price,
-    portrait: data.portrait,
+  const { name, id, city, country, tagline, price, portrait } = data;
+  const picture = `assets/photographers/Photographers ID Photos/${portrait}`;
 
-    //Create a photograher card with object elements above
-    getUserCardDOM: function () {
-      const { name, portrait } = data;
-      const picture = `assets/photographers/Photographers ID Photos/${portrait}`;
+  //Display photographer details
+  function getUserInformation() {
+    const infoContainer = document.createElement('div');
+    infoContainer.classList.add('photograph-header-left');
 
-      const article = document.createElement('article');
-      article.classList.add('card');
+    const photographerInfo = `<h1 class='card-name'>${name}</h1>
+        <p class='card-location'>${city}, ${country}</p>
+        <p class="card-tagline">${tagline}</p>`;
+    infoContainer.innerHTML = photographerInfo;
 
-      const photographerCard = `
-                        <a aria-label="${name}" href="photographer.html?id=${this.id}" id="${this.id}" class="card-link">
+    return infoContainer;
+  }
+
+  //Display Photographer ID picture
+  function getUserPicture() {
+    const photoContainer = document.createElement('div');
+    photoContainer.classList.add('photograph-header-right');
+
+    const photographerPicture = `<img class="card-image" src="${picture}" alt="photo de ${name}">`;
+    photoContainer.innerHTML = photographerPicture;
+
+    return photoContainer;
+  }
+
+  //Create a photographer card 
+  function getUserCardDOM() {
+    const article = document.createElement('article');
+    article.classList.add('card');
+
+    const photographerCard = `
+                        <a aria-label="${name}" href="photographer.html?id=${id}" id="${id}" class="card-link">
                             <img class="card-image" src="${picture}" alt="photo de ${name}">
                             <h2 aria='hidden' class="card-name">${name}</h2>
                         </a>
-                        <p class="card-location">${this.city}, ${this.country}</p>
-                        <p class="card-tagline">${this.tagline}</p>
-                        <p class="card-price">${this.price}&euro;/jour</p>`;
-      article.innerHTML = photographerCard;
-      return article;
-    },
+                        <p class="card-location">${city}, ${country}</p>
+                        <p class="card-tagline">${tagline}</p>
+                        <p class="card-price">${price}&euro;/jour</p>`;
+    article.innerHTML = photographerCard;
+    return article;
+  }
+  
+  return {
+    getUserInformation,
+    getUserCardDOM,
+    getUserPicture
   }
 }

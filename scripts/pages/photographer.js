@@ -1,27 +1,35 @@
 import { getData } from '../utils/apiData.js'
-
+import { photographerFactory } from '../factories/photographer.js'
+//import { mediaFactory } from '../factories/media.js'
 
 /**
- * Get the photographer id from URL query string
- * @returns {String} 
+ * Get the photographer id from URL query string and return photagrapher details
+ * @param {Array} data
+ * @returns {Object}
  **/
-function getPhotographerIdFromUrl() {
+function getPhotographerDetails(data) {
+
+  const photographers = data.photographers
   const urlSearchParams = new URLSearchParams(window.location.search)
-  const PhotographerIdInUrl = urlSearchParams.get('id')
-  return PhotographerIdInUrl
+  const photographerIdInUrl = urlSearchParams.get('id')
+  const photographer = photographers.find((element) => element.id == photographerIdInUrl);
+  
+  return photographer
 }
 
 /**
- * Diplay photographer description
- * @param {String} photographerId
- **/
-async function displayPhotographerDecription(photographerId) {
-  const Data = await getData()
-  const photographers = Data.photographers
-  const medias = Data.media
-  const photographerItem = photographers.find( (element) => element.id == photographerId)
+ * Get photographer details and display photographer description
+ * @param {String} id
+ * @returns {Array}
+ **
+async function getPhotographerDetails(pht) {
+  const photographers = data.photographers
   
-  const photographerHeaderSection = document.querySelector('.photograph-header');
+  const photographerItem = photographers.find((element) => element.id == id)
+  
+  //const photographerModel = photographerFactory(photographerItem)
+  const photographerHeaderSection =
+    document.querySelector('.photograph-header');
   const photographerHeaderOnHTML = `
     <div class='photograph-header-left'>
         <h1 class='card-name'>${photographerItem.name}</h1>
@@ -33,29 +41,29 @@ async function displayPhotographerDecription(photographerId) {
     </div>
   `;
   photographerHeaderSection.innerHTML += photographerHeaderOnHTML
-}
-const id = getPhotographerIdFromUrl()
-displayPhotographerDecription(id)
-
-//getPhotographerMedias(id)
-// Display an photographer details on photographer page
-/*function displayPhotographerOnHtml(photographer) {
-  const itemHtmlContainer = document.getElementById('teddy-card');
-
-  itemHtmlContainer.innerHTML += `
-      <img src="$ photographer.imageUrl}" alt="teddy-photo"/>
-      <h3>$ photographer
-    .name}</h3>
-      <p>$ photographer
-    .description}</p>
-      <span>Prix: $ photographer
-    .price / 100} €</span>
-    `;
- photographer.colors.forEach(function (option) {
-    const itemOptionsSelectHtml = document.getElementById(
-      'teddy-colors-select'
-    );
-    const itemOptionHtml = document.createElement('option');
-    itemOptionsSelectHtml.appendChild(itemOptionHtml).innerHTML += option;
-  });
+  return photographerItem
 }*/
+
+function displayPhotographerBanner(photographer) {
+  const banner = document.querySelector('.photograph-header')
+  const photographerModel = photographerFactory(photographer)
+  
+  banner.appendChild(photographerModel.getUserInformation())
+  banner.appendChild(photographerModel.getUserPicture())
+}
+
+/*
+function displayPhotographerMedia(identity, data) {
+  const mediaModel = mediaFactory (identity, data)
+  const mediaListPhotographer = mediaModel.createMediaList()
+  
+  const display = mediaModel.getMediaByType(mediaListPhotographer);
+  //console.log(display)
+}*/
+
+const data = await getData()
+const photographer = getPhotographerDetails(data)
+displayPhotographerBanner(photographer)
+//const photographerIdentity = await displayPhotographerIdentity(photographerId, data)
+//console.log(photographerIdentity)
+//displayPhotographerMedia(photographerIdentity, data)
