@@ -1,3 +1,4 @@
+@import './style.css';
 #contact_modal {
     display: none;
 }
@@ -9,6 +10,39 @@
     height: 100%;
     margin: 0 100px;
     padding:30px;
+}
+
+.media-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.media-card {
+  width:350px;
+  height: 25rem;
+  padding: 2rem;
+  color: #901C1C;
+}
+
+.media-image {
+  width: 350px;
+  height: 300px;
+  object-fit: cover;
+  object-position: top;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.media-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+
+.media-info-title {
+    margin:0;
 }
 
 .contact_button {
@@ -110,6 +144,16 @@ form input {
     .photograph-header-left h1, p {
         text-align: center;
         margin-right: 0;
+    }
+
+    .media-card {
+        flex-basis: 100%;
+        padding: 2rem 0;
+        height: 30rem;
+    }
+
+    .media-image {
+        height: 27rem;
     }
 
 }

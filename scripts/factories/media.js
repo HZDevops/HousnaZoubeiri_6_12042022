@@ -9,20 +9,23 @@ export function mediaFactory (data, photographerId) {
     const divMedia = document.createElement('div')
     //const h2 = document.createElement('h2')
 
-    article.classList.add('media-list')
-    divMedia.classList.add('photographer-media')
-
+    article.classList.add('media-card')
     //h2.textContent = title
 
-        if (image) {
-          const imageMedia = `
-              <a href="#" class="photographer-media-link">
-                <img class="media-image" id=${id} src="../assets/photographers/${photographerId}/${image}" alt="photo ${title}"></img>
-              </a>
-              <p class="photographer-media-title">${title}</p>
-              <span class="photographer-media-likes">${likes}</span>
-            `
-          divMedia.innerHTML = imageMedia
+    if (image) {
+      const imageMedia = `
+        <a href="#" class="photographer-media-link">
+          <img class="media-image" id=${id} src="../assets/photographers/${photographerId}/${image}" alt="photo ${title}"></img>
+        </a>
+        <div class="media-info">
+          <p class="media-info-title">${title}</p>
+          <div class="media-info-like">
+            <span >${likes}</span>
+            <i class="fas fa-heart"></i>
+          </div>
+        </div>
+      `;
+      article.innerHTML = imageMedia
           /*const img = document.createElement('img');
           img.setAttribute(
             'src',
@@ -38,21 +41,23 @@ export function mediaFactory (data, photographerId) {
               openView(id)
             }
           });*/
-          article.appendChild(divMedia)
-        } else if (video) {
-
-          const videoMedia = `
-            <a href="" class="photographer-media-link">
-              <iframe
-                height="600"
-                width="800"
-                src="../assets/photographers/${photographerId}/${video}"
-              ></iframe>
-            </a>
-            <p class="photographer-media-title">${title}</p>
-            <span class="photographer-media-likes">${likes}</span>
-            `
-          divMedia.innerHTML = videoMedia
+    } else if (video) {
+      const videoMedia = `
+        <a href="" class="photographer-media-link">
+          <video id=${id} class="media-image">
+            <source src="../assets/photographers/${photographerId}/${video}" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+        </a>
+        <div class="media-info">
+          <p class="media-info-title">${title}</p>
+          <div class="media-info-like">
+            <span >${likes}</span>
+            <i class="fas fa-heart"></i>
+          </div>
+        </div>
+      `;
+      article.innerHTML = videoMedia
           /*const movie = document.createElement('video');
           const source = document.createElement('source');
           source.setAttribute(
@@ -71,8 +76,7 @@ export function mediaFactory (data, photographerId) {
             }
           });
           article.appendChild(movie)*/
-          article.appendChild(divMedia)
-        }
+    }
 
         /*p.appendChild(i)
 
@@ -84,8 +88,7 @@ export function mediaFactory (data, photographerId) {
         div.appendChild(h2)
         div.appendChild(p)
         article.appendChild(div)*/
-        article.appendChild(divMedia);
-        return article
+    return article
   }
 
   return {
