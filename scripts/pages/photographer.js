@@ -1,6 +1,6 @@
 import { getData } from '../utils/apiData.js'
 import { photographerFactory } from '../factories/photographer.js'
-//import { mediaFactory } from '../factories/media.js'
+import { mediaFactory } from '../factories/media.js'
 
 /**
  * Get the photographer id from URL query string and return photagrapher details
@@ -10,39 +10,20 @@ import { photographerFactory } from '../factories/photographer.js'
 function getPhotographerDetails(data) {
 
   const photographers = data.photographers
+  const medias = data.media
+  
   const urlSearchParams = new URLSearchParams(window.location.search)
   const photographerIdInUrl = urlSearchParams.get('id')
-  const photographer = photographers.find((element) => element.id == photographerIdInUrl);
-  
-  return photographer
+  const photographer = photographers.find((element) => element.id == photographerIdInUrl)
+  const mediaListPhotographer = medias.filter((element) => element.photographerId == photographerIdInUrl)
+   
+  return { photographer, photographerIdInUrl, mediaListPhotographer}
 }
 
 /**
- * Get photographer details and display photographer description
- * @param {String} id
- * @returns {Array}
- **
-async function getPhotographerDetails(pht) {
-  const photographers = data.photographers
-  
-  const photographerItem = photographers.find((element) => element.id == id)
-  
-  //const photographerModel = photographerFactory(photographerItem)
-  const photographerHeaderSection =
-    document.querySelector('.photograph-header');
-  const photographerHeaderOnHTML = `
-    <div class='photograph-header-left'>
-        <h1 class='card-name'>${photographerItem.name}</h1>
-        <p class='card-location'>${photographerItem.city}, ${photographerItem.country}</p>
-        <p class="card-tagline">${photographerItem.tagline}</p>
-    </div>
-    <div class='photograph-header-right'>
-      <img class="card-image" src="assets/photographers/Photographers ID Photos/${photographerItem.portrait}" alt="${photographerItem.name}">
-    </div>
-  `;
-  photographerHeaderSection.innerHTML += photographerHeaderOnHTML
-  return photographerItem
-}*/
+ * Display photographer details on photographer page
+ * @param {Object} photographer
+ **/
 
 function displayPhotographerBanner(photographer) {
   const banner = document.querySelector('.photograph-header')
@@ -52,18 +33,40 @@ function displayPhotographerBanner(photographer) {
   banner.appendChild(photographerModel.getUserPicture())
 }
 
-/*
-function displayPhotographerMedia(identity, data) {
-  const mediaModel = mediaFactory (identity, data)
-  const mediaListPhotographer = mediaModel.createMediaList()
-  
-  const display = mediaModel.getMediaByType(mediaListPhotographer);
-  //console.log(display)
-}*/
+/*//Clean photographers media list
+  function cleanMediaList(medias) {
+    const mediaList = [];
+    let mediasCleaned
+
+    for (let i = 0; i < medias.length; i++) {
+      const image = medias.filter((element) => element.image)[i];
+      const video = medias.filter((element) => element.video)[i];
+      mediaList.push(image);
+      mediaList.push(video);
+      mediasCleaned = mediaList.filter(
+        (element) => element != undefined
+      );
+    }
+    //console.log(mediaList)
+    return mediasCleaned
+  }*/
+
+// Display photographer medias
+function displayPhotographerMedia(medias, photographerId) {
+  const mediaSection = document.querySelector(".media-section")
+  medias.forEach((media) => {
+    const mediaModel = mediaFactory(media, photographerId)
+    const mediaCardDOM = mediaModel.getMediaCardDOM()
+    mediaSection.appendChild(mediaCardDOM)
+  })
+}
 
 const data = await getData()
-const photographer = getPhotographerDetails(data)
+const photographerData = getPhotographerDetails(data)
+
+const photographer = photographerData.photographer
+const photographerId = photographerData.photographerIdInUrl
+const mediasByPhotographer = photographerData.mediaListPhotographer
+
 displayPhotographerBanner(photographer)
-//const photographerIdentity = await displayPhotographerIdentity(photographerId, data)
-//console.log(photographerIdentity)
-//displayPhotographerMedia(photographerIdentity, data)
+displayPhotographerMedia(mediasByPhotographer, photographerId)

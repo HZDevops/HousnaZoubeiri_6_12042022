@@ -1,9 +1,5 @@
-/**
- * Create a photographer object and a photographer card
- * @param {Object} data
- * @returns {HTMLElement}
- **/
 export function photographerFactory(data) {
+  
   const { name, id, city, country, tagline, price, portrait } = data;
   const picture = `assets/photographers/Photographers ID Photos/${portrait}`;
 
@@ -47,7 +43,7 @@ export function photographerFactory(data) {
     article.innerHTML = photographerCard;
     return article;
   }
-  
+
   return {
     getUserInformation,
     getUserCardDOM,

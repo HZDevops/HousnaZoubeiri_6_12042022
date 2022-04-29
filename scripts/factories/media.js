@@ -1,49 +1,96 @@
-import { MediaTypeFactory } from "./mediaTypeFactory.js"
-/**
- * Create a photographer medias list
- * @param {Array} data
- * @param {String} photographerIdentity
- * @returns { Array }
- **/
+export function mediaFactory (data, photographerId) {
 
-export function mediaFactory (photographerIdentity, data) {
-  const medias = data.media
+  const { id, title, image, video, likes, date, price } = data
 
-  //Create a photograher card with object elements above
-  function createMediaList() {
-    const mediaById = medias.filter(
-      (element) => element.photographerId == photographerIdentity.id
-    );
-    const mediaListArray = [];
-    let mediasFiltered
+  //Create photographer media list
+  function getMediaCardDOM(medias) {
 
-    for (let i = 0; i < mediaById.length; i++) {
-      const image = mediaById.filter((element) => element.image)[i];
-      const video = mediaById.filter((element) => element.video)[i];
-      mediaListArray.push(image);
-      mediaListArray.push(video);
-      mediasFiltered = mediaListArray.filter(
-        (element) => element != undefined
-      );
-    }
-    return mediasFiltered
-  }
+    const article = document.createElement('article')
+    const divMedia = document.createElement('div')
+    //const h2 = document.createElement('h2')
 
-  function getMediaByType(medias) {
-    console.log(medias)
-    medias.forEach((media) => {
-      if (media.video) {
-        return new MediaTypeFactory (media, 'video')
-      } else if (media.photo) {
-        return new MediaTypeFactory(media, 'photo')
-      }
-    })
+    article.classList.add('media-list')
+    divMedia.classList.add('photographer-media')
+
+    //h2.textContent = title
+
+        if (image) {
+          const imageMedia = `
+              <a href="#" class="photographer-media-link">
+                <img class="media-image" id=${id} src="../assets/photographers/${photographerId}/${image}" alt="photo ${title}"></img>
+              </a>
+              <p class="photographer-media-title">${title}</p>
+              <span class="photographer-media-likes">${likes}</span>
+            `
+          divMedia.innerHTML = imageMedia
+          /*const img = document.createElement('img');
+          img.setAttribute(
+            'src',
+            `assets/photographers/${photographerId}/${image}`
+          );
+          img.alt = `Picture ` + title
+          img.tabIndex = 0
+          img.addEventListener('click', function () {
+            openView(id)
+          });
+          img.addEventListener('keyup', (event) => {
+            if (event.keyCode === 13) {
+              openView(id)
+            }
+          });*/
+          article.appendChild(divMedia)
+        } else if (video) {
+
+          const videoMedia = `
+            <a href="" class="photographer-media-link">
+              <iframe
+                height="600"
+                width="800"
+                src="../assets/photographers/${photographerId}/${video}"
+              ></iframe>
+            </a>
+            <p class="photographer-media-title">${title}</p>
+            <span class="photographer-media-likes">${likes}</span>
+            `
+          divMedia.innerHTML = videoMedia
+          /*const movie = document.createElement('video');
+          const source = document.createElement('source');
+          source.setAttribute(
+            'src',
+            `assets/photographers/${photographerId}/${video}`
+          );
+          source.setAttribute('type', `video/` + video.split('.').pop());
+          movie.appendChild(source);
+          movie.tabIndex = 0
+          movie.addEventListener('click', function () {
+            openView(id)
+          });
+          movie.addEventListener('keyup', (event) => {
+            if (event.keyCode === 13) {
+              openView(id)
+            }
+          });
+          article.appendChild(movie)*/
+          article.appendChild(divMedia)
+        }
+
+        /*p.appendChild(i)
+
+        p.addEventListener('keypress', (event) => {
+          if (event.keyCode === 13) {
+            clickLike(id)
+          }
+        });
+        div.appendChild(h2)
+        div.appendChild(p)
+        article.appendChild(div)*/
+        article.appendChild(divMedia);
+        return article
   }
 
   return {
-    photographerIdentity,
-    createMediaList,
-    getMediaByType
+    //createMediaList,
+    getMediaCardDOM,
   }
 }
 
