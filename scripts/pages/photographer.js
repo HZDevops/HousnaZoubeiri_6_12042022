@@ -1,6 +1,7 @@
 import { getData } from '../utils/apiData.js'
 import { photographerFactory } from '../factories/photographer.js'
 import { mediaFactory } from '../factories/media.js'
+import { likeMedia } from '../utils/likeMedia.js'
 
 /**
  * Get the photographer id from URL query string and return photagrapher details
@@ -33,23 +34,6 @@ function displayPhotographerBanner(photographer) {
   banner.appendChild(photographerModel.getUserPicture())
 }
 
-/*//Clean photographers media list
-  function cleanMediaList(medias) {
-    const mediaList = [];
-    let mediasCleaned
-
-    for (let i = 0; i < medias.length; i++) {
-      const image = medias.filter((element) => element.image)[i];
-      const video = medias.filter((element) => element.video)[i];
-      mediaList.push(image);
-      mediaList.push(video);
-      mediasCleaned = mediaList.filter(
-        (element) => element != undefined
-      );
-    }
-    //console.log(mediaList)
-    return mediasCleaned
-  }*/
 
 // Display photographer medias
 function displayPhotographerMedia(medias, photographerId) {
@@ -70,3 +54,4 @@ const mediasByPhotographer = photographerData.mediaListPhotographer
 
 displayPhotographerBanner(photographer)
 displayPhotographerMedia(mediasByPhotographer, photographerId)
+likeMedia()

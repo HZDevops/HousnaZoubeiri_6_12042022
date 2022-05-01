@@ -8,7 +8,7 @@
     justify-content: space-around;
     background-color: #FAFAFA;
     height: 100%;
-    margin: 0 100px;
+    margin: 0 55px;
     padding:30px;
 }
 
@@ -43,6 +43,20 @@
 
 .media-info-title {
     margin:0;
+}
+
+.media-info-like {
+    cursor: pointer;
+}
+
+.media-info-like :hover{
+    color:#901C1C;
+    font-size: 1.2rem;
+}
+
+.media-info-like span {
+    color:black;
+    font-size: 0.9rem;
 }
 
 .contact_button {
