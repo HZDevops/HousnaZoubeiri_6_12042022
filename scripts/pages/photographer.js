@@ -38,7 +38,7 @@ function displayPhotographerBanner(photographer) {
 // Display medias, price and likes number photographer 
 function displayPhotographerMedia(medias, photographerId) {
   const mediaSection = document.querySelector(".media-section")
-  const likeSection = document.querySelector('.like-section')
+  const likeSection = document.querySelector(".like-section")
     
   medias.forEach((media) => {
     const mediaModel = mediaFactory(media, photographerId)
@@ -53,7 +53,7 @@ function displayPhotographerMedia(medias, photographerId) {
           <i class="fas fa-heart"></i>
         </div>
         <p>${photographer.price}&euro; / jour</p>
-    `;
+    `
   likeSection.innerHTML = likeCounterSection
 }
 

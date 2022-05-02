@@ -40,7 +40,7 @@ export function mediaFactory (data, photographerId) {
             <i class="fas fa-heart"></i>
           </div>
         </div>
-      `;
+      `
       article.innerHTML = videoMedia
     }
     return article

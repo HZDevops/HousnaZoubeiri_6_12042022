@@ -1,19 +1,11 @@
-//import { mediaFactory} from '../factories/media.js'
-
-//Calculate the number of likes by photographer
-/*export function totalLikesPhotographer(medias, photographerId) {
-  const totalLikeArray = [];
-
-  medias.forEach((media) => {
-    const mediaModel = mediaFactory(media, photographerId);
-    const mediaLikeNumber = mediaModel.getLikeByMedia();
-    totalLikeArray.push(mediaLikeNumber);
-  });
-
-  const reducer = (accumulator, curr) => accumulator + curr;
-  const likesNumber = totalLikeArray.reduce(reducer);
-  return likesNumber;
-}*/
+//Update like counter of the photographer page
+export function updateLikesNumber() {
+  const likes = document.querySelectorAll("#like-number")
+  const likesArray = Array.from(likes, (e) => parseInt(e.innerText))
+  const reducer = (accumulator, currentValue) => accumulator + currentValue
+  const totalLikes = likesArray.reduce(reducer)
+  return totalLikes
+}
 
 //Like or unlike media and update the total like counter of the photographer page
 export function likeMedia(medias, photographerId) {
@@ -26,13 +18,17 @@ export function likeMedia(medias, photographerId) {
       const liked = classList.toggle('liked');
       const oldValue = document.querySelectorAll('#like-number');
       if (liked) {
-        const newValue = parseFloat(oldValue[i].innerText) + 1
-        oldValue[i].innerText = newValue;
-        likeCounter.innerHTML = totalLikesPhotographer(medias, photographerId)
-      } else {
-        const newValue = parseFloat(oldValue[i].innerText) - 1
+        const newValue = parseInt(oldValue[i].innerText) + 1
         oldValue[i].innerText = newValue
-        likeCounter.innerHTML = totalLikesPhotographer(medias, photographerId)
+        oldValue[i].style.color ='#901C1C'
+        oldValue[i].style.fontSize = '1.2rem'
+        likeCounter.textContent = updateLikesNumber()
+      } else {
+        const newValue = parseInt(oldValue[i].innerText) - 1
+        oldValue[i].innerText = newValue
+        oldValue[i].style.color = 'black';
+        oldValue[i].style.fontSize = '0.9rem';
+        likeCounter.textContent = updateLikesNumber()
       }
     });
   }

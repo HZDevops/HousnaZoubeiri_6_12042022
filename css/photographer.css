@@ -59,6 +59,28 @@
     font-size: 0.9rem;
 }
 
+.like-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    right: 1.5rem;
+    width: 18rem;
+    padding: 0 2rem;
+    bottom: 0;
+    background: #db8876;
+    border-radius: 0.3rem;
+    font-size: 1.2em;
+}
+
+.like-counter {
+    display: flex;
+}
+
+.like-counter i {
+    align-self: center;
+    margin-left: 5px;
+}
 .contact_button {
     order:1;
     align-self: center;
