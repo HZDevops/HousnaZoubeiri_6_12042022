@@ -1,7 +1,7 @@
 import { getData } from '../utils/apiData.js'
 import { photographerFactory } from '../factories/photographer.js'
 import { mediaFactory } from '../factories/media.js'
-import { likeMedia } from '../utils/likeMedia.js'
+import { likeMedia, /*totalLikesPhotographer */} from '../utils/likeMedia.js';
 
 /**
  * Get the photographer id from URL query string and return photagrapher details
@@ -35,14 +35,26 @@ function displayPhotographerBanner(photographer) {
 }
 
 
-// Display photographer medias
+// Display medias, price and likes number photographer 
 function displayPhotographerMedia(medias, photographerId) {
   const mediaSection = document.querySelector(".media-section")
+  const likeSection = document.querySelector('.like-section')
+    
   medias.forEach((media) => {
     const mediaModel = mediaFactory(media, photographerId)
     const mediaCardDOM = mediaModel.getMediaCardDOM()
     mediaSection.appendChild(mediaCardDOM)
   })
+
+  const totalLikes = mediaFactory(medias, photographerId).getLikeDOM(medias)
+  const likeCounterSection = `
+        <div class="like-counter">
+          <p id="total-like-number">${totalLikes}</p>
+          <i class="fas fa-heart"></i>
+        </div>
+        <p>${photographer.price}&euro; / jour</p>
+    `;
+  likeSection.innerHTML = likeCounterSection
 }
 
 const data = await getData()
@@ -54,4 +66,8 @@ const mediasByPhotographer = photographerData.mediaListPhotographer
 
 displayPhotographerBanner(photographer)
 displayPhotographerMedia(mediasByPhotographer, photographerId)
-likeMedia()
+likeMedia(mediasByPhotographer, photographerId)
+//const likesNumber = totalLikesPhotographer(mediasByPhotographer, photographerId)
+//displayLikePhotographer(photographer)
+/*const likeCounter = document.querySelector('#total-like-number');
+likeCounter.innerHTML = likesNumber*/

@@ -2,14 +2,15 @@ export function mediaFactory (data, photographerId) {
 
   const { id, title, image, video, likes, date, price } = data
 
+  const totalLikes = 0
+
   //Create photographer media cards
   function getMediaCardDOM(medias) {
 
     const article = document.createElement('article')
-    const divMedia = document.createElement('div')
-   
+       
     article.classList.add('media-card')
-   
+     
     if (image) {
       const imageMedia = `
         <a href="#" title='${title}, cliquez pour agrandir' class="photographer-media-link">
@@ -17,7 +18,7 @@ export function mediaFactory (data, photographerId) {
         </a>
         <div class="media-info">
           <p class="media-info-title">${title}</p>
-          <div aria-label="Cliquer pour liker la photo" id="like" class="media-info-like">
+          <div aria-label="likes" id="like-media" class="media-info-like">
             <span id="like-number">${likes}</span>
             <i class="fas fa-heart"></i>
           </div>
@@ -34,7 +35,7 @@ export function mediaFactory (data, photographerId) {
         </a>
         <div class="media-info">
           <p class="media-info-title">${title}</p>
-          <div aria-label="Cliquer pour liker la vidéo" id="like" class="media-info-like">
+          <div aria-label="likes" id="like-media" class="media-info-like">
             <span id="like-number">${likes}</span>
             <i class="fas fa-heart"></i>
           </div>
@@ -45,8 +46,19 @@ export function mediaFactory (data, photographerId) {
     return article
   }
 
+  function getLikeDOM(medias) {
+    let likesNumber= 0
+
+    medias.forEach((media) => {
+      likesNumber += parseInt(media.likes)
+    })
+    
+    return likesNumber
+  }
+
   return {
     getMediaCardDOM,
+    getLikeDOM
   }
 }
 
