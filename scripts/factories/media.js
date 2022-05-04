@@ -18,9 +18,9 @@ export function mediaFactory (data, photographerId) {
         </a>
         <div class="media-info">
           <p class="media-info-title">${title}</p>
-          <div aria-label="likes" id="like-media" class="media-info-like">
-            <span id="like-number">${likes}</span>
-            <i class="fas fa-heart"></i>
+          <div class="media-info-like">
+            <span class="like-number">${likes}</span>
+            <i aria-label="likes" class="fas fa-heart"></i>
           </div>
         </div>
       `;
@@ -35,12 +35,12 @@ export function mediaFactory (data, photographerId) {
         </a>
         <div class="media-info">
           <p class="media-info-title">${title}</p>
-          <div aria-label="likes" id="like-media" class="media-info-like">
-            <span id="like-number">${likes}</span>
-            <i class="fas fa-heart"></i>
+          <div class="media-info-like">
+            <span class="like-number">${likes}</span>
+            <i aria-label="likes" class="fas fa-heart"></i>
           </div>
         </div>
-      `
+      `;
       article.innerHTML = videoMedia
     }
     return article
