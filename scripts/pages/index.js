@@ -1,4 +1,4 @@
-import { getData } from '../utils/apiData.js'
+import { getData } from '../utils/getData.js'
 import { photographerFactory } from '../factories/photographer.js'
 
 /**
