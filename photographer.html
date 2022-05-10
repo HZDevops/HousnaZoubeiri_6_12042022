@@ -14,9 +14,9 @@
         <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
       </a>
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button id="modal-button" class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
       <!--Drop Down-->
       <div class="sort-container">
@@ -36,22 +36,36 @@
       <div class="like-section"></div>
     </main>
     <!--Modal-->
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" alt="Contact Me" />
+    <div id="contact-modal" class="modal" aria-label="contact me" role="dialog" aria-labelledby="form-title" aria-hidden="true">
+			<form action="photographer-page.html" method="POST" id="contact-form">
+        <header aria-label="contact form header">
+          <h2 id="form-title">
+            <span>Contactez-moi</span>
+            <span id="ph-form-name"></span>
+          </h2>
+          <button id="close-btn" aria-label="Close Contact form" type="button">
+            <img src="assets/icons/close.svg" alt="Contact Me" />
+          </button>
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
+        <div class="formData" data-error="Vous devez entrer votre prénom." data-error-visible="false">
+					<label for="firstname" id="label-firstname">Prénom</label>
+					<input name="first-name" id="first-name" aria-labelledby="label-firstname" placeholder="Prénom"/>
+				</div>
+        <div class="formData" data-error="Vous devez entrer votre nom." data-error-visible="false">
+          <label for="last-name" id="label-lastname">Nom</label>
+          <input name="last-name" id="last-name" aria-labelledby="label-lastname" placeholder="Nom" />
+        </div>
+        <div class="formData" data-error="Vous devez entrer un email valide." data-error-visible="false">
+          <label for="email" id="label-email">Email</label>
+          <input type="email" name="email" id="email" aria-labelledby="label-email" placeholder="exemple@email.com"/>
+        </div>
+        <div class="formData" data-error="Vous devez entrer votre message." data-error-visible="false">
+          <label for="message" id="label-message">Message</label>
+          <textarea name="message" id="message"aria-labelledby="label-message" placeholder="Votre message..."></textarea>
+        </div>
+        <input type="submit" value="Envoyer" class="form-submit" title="Send">
+      </form>
 		</div>
     <script type="module" src="scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

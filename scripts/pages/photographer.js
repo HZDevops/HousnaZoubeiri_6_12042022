@@ -3,6 +3,9 @@ import { photographerFactory } from '../factories/photographer.js'
 import { mediaFactory } from '../factories/media.js'
 import { likeMedia } from '../utils/likeMedia.js'
 import { dropDownMenu } from '../utils/sortMenu.js'
+import { displayModal, closeModal } from '../utils/contactForm.js'
+
+//import { displayModal } from '../utils/contactForm.js'
 
 /**
  * Get the photographer id from URL query string and return photagrapher details
@@ -66,6 +69,7 @@ const photographerId = photographerData.photographerIdInUrl
 const mediasByPhotographer = photographerData.mediaListPhotographer
 
 displayPhotographerBanner(photographer)
+displayModal(photographer)
 displayPhotographerMedia(mediasByPhotographer, photographerId)
 likeMedia(mediasByPhotographer, photographerId)
 dropDownMenu(mediasByPhotographer, photographerId)
