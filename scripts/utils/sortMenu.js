@@ -49,10 +49,10 @@ function displaySortedMedia (mediasSorted, photographerId) {
 
 //Open and close drop-down sort menu
 export function dropDownMenu(medias, photographerId) {
-  const openMenu = document.getElementsByClassName('sort-btn');
-  const closeMenu = document.getElementsByClassName('arrow-up-close');
-  const sortList = document.getElementsByClassName('sort-list');
-  const sortOption = Array.from(document.getElementsByClassName('sort-option'));
+  const openMenu = document.getElementsByClassName('sort-btn')
+  const closeMenu = document.getElementsByClassName('arrow-up-close')
+  const sortList = document.getElementsByClassName('sort-list')
+  const sortOption = Array.from(document.getElementsByClassName('sort-option'))
 
   let mediaSorted = []
 

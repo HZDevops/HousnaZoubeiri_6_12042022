@@ -25,11 +25,10 @@
   color: #901C1C;
 }
 
-.media-image {
+.media {
   width: 350px;
   height: 300px;
   object-fit: cover;
-  object-position: top;
   cursor: pointer;
   border-radius: 4px;
 }
@@ -251,7 +250,7 @@ input[data-error]::after {
         height: 30rem;
     }
 
-    .media-image {
+    .media {
         height: 27rem;
     }
 }

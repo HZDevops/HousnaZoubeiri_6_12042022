@@ -5,7 +5,7 @@ export function mediaFactory (data, photographerId) {
   const totalLikes = 0
 
   //Create photographer media cards
-  function getMediaCardDOM(medias) {
+  function getMediaCardDOM() {
 
     const article = document.createElement('article')
        
@@ -14,7 +14,7 @@ export function mediaFactory (data, photographerId) {
     if (image) {
       const imageMedia = `
         <a href="#" title='${title}, cliquez pour agrandir' class="photographer-media-link">
-          <img class="media-image" id=${id} src="../assets/photographers/${photographerId}/${image}" alt="photo ${title}"></img>
+          <img class="media" id=${id} src="../assets/photographers/${photographerId}/${image}" alt="photo ${title}"></img>
         </a>
         <div class="media-info">
           <p class="media-info-title">${title}</p>
@@ -28,7 +28,7 @@ export function mediaFactory (data, photographerId) {
     } else if (video) {
       const videoMedia = `
         <a href="#" title="${title}, cliquez pour visionner la vidéo" class="photographer-media-link">
-          <video id=${id} class="media-image" controls="controls">
+          <video id=${id} class="media" controls="controls">
             <source src="../assets/photographers/${photographerId}/${video}" type="video/mp4">
               Your browser does not support the video tag.
           </video>
@@ -56,9 +56,38 @@ export function mediaFactory (data, photographerId) {
     return likesNumber
   }
 
+  function getMediaDOM (medias) {
+    let mediaNameArray = []
+    let mediaHtmlArray = []
+   
+    let mediaDOM = Array.from(document.getElementsByClassName('media'))
+    for (let i = 0; i < mediaDOM.length; i++) {
+      mediaHtmlArray.push(mediaDOM[i].outerHTML);
+    }
+
+    medias.forEach((media) => {
+      mediaNameArray.push(media.title)
+    })
+    console.log(mediaHtmlArray);
+    return { mediaHtmlArray, mediaNameArray }
+  }
+    
+      /*if (image){
+        sourceMedia = `../assets/photographers/${photographerId}/${image}`
+        nameMedia = title
+      }
+      else if (video){
+        sourceMedia = `../assets/photographers/${photographerId}/${video}`
+        nameMedia = title
+      }
+      //console.log(sourceMedia)
+      //console.log(nameMedia)
+      //return {sourceMedia, nameMedia}*/
+  
+
   return {
     getMediaCardDOM,
-    getLikeDOM
+    getLikeDOM,
+    getMediaDOM
   }
 }
-

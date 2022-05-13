@@ -3,7 +3,8 @@ import { photographerFactory } from '../factories/photographer.js'
 import { mediaFactory } from '../factories/media.js'
 import { likeMedia } from '../utils/likeMedia.js'
 import { dropDownMenu } from '../utils/sortMenu.js'
-import { displayModal, closeModal } from '../utils/contactForm.js'
+import { displayModal } from '../utils/contactForm.js'
+import { initLightBox } from '../utils/LightBox.js'
 
 //import { displayModal } from '../utils/contactForm.js'
 
@@ -43,14 +44,23 @@ function displayPhotographerBanner(photographer) {
 export function displayPhotographerMedia(medias, photographerId) {
   const mediaSection = document.querySelector(".media-section")
   const likeSection = document.querySelector(".like-section")
-    
+  
+  let mediaHtml = []
+  let mediaName = []
+  
   medias.forEach((media) => {
     const mediaModel = mediaFactory(media, photographerId)
     const mediaCardDOM = mediaModel.getMediaCardDOM()
     mediaSection.appendChild(mediaCardDOM)
   })
 
-  const totalLikes = mediaFactory(medias, photographerId).getLikeDOM(medias)
+  const mediaDOM = mediaFactory(medias,photographerId)
+  mediaHtml = mediaDOM.getMediaDOM(medias).mediaHtmlArray
+  mediaName = mediaDOM.getMediaDOM(medias).mediaNameArray
+
+  initLightBox(mediaHtml, mediaName)
+   
+  const totalLikes = mediaDOM.getLikeDOM(medias)
   const likeCounterSection = `
         <div class="like-counter">
           <p id="total-like-number">${totalLikes}</p>
@@ -73,5 +83,6 @@ displayModal(photographer)
 displayPhotographerMedia(mediasByPhotographer, photographerId)
 likeMedia(mediasByPhotographer, photographerId)
 dropDownMenu(mediasByPhotographer, photographerId)
+
 //const mediaSorted = getSortedMediaList(mediasByPhotographer, 'title')
 //console.log(mediaSorted)
