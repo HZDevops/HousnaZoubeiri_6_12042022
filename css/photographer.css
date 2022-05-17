@@ -46,8 +46,14 @@
 
 .media-info-like {
     cursor: pointer;
+    background-color: transparent;
+    color: #901C1C;
+    border: none;
 }
 
+.media-info-like i {
+    font-size: 1.1rem;
+}
 .media-info-like :hover{
     color:#901C1C;
     font-size: 1.2rem;

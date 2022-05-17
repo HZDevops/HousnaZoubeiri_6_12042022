@@ -18,10 +18,10 @@ export function mediaFactory (data, photographerId) {
         </a>
         <div class="media-info">
           <p class="media-info-title">${title}</p>
-          <div class="media-info-like" aria-label="likes">
+          <button class="media-info-like" aria-label="likes">
             <span class="like-number">${likes}</span>
             <i class="fas fa-heart"></i>
-          </div>
+          </button>
         </div>
       `;
       article.innerHTML = imageMedia
@@ -35,10 +35,10 @@ export function mediaFactory (data, photographerId) {
         </a>
         <div class="media-info">
           <p class="media-info-title">${title}</p>
-          <div class="media-info-like" aria-label="likes">
+          <button class="media-info-like" aria-label="likes">
             <span class="like-number">${likes}</span>
             <i class="fas fa-heart"></i>
-          </div>
+          </button>
         </div>
       `;
       article.innerHTML = videoMedia
