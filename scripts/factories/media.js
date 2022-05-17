@@ -13,7 +13,7 @@ export function mediaFactory (data, photographerId) {
      
     if (image) {
       const imageMedia = `
-        <a href="#" title='${title}, cliquez pour agrandir' class="photographer-media-link">
+        <a href="#" aria-label='${title}, cliquez pour agrandir' class="photographer-media-link">
           <img class="media" id=${id} src="../assets/photographers/${photographerId}/${image}" alt="photo ${title}"></img>
         </a>
         <div class="media-info">
@@ -27,7 +27,7 @@ export function mediaFactory (data, photographerId) {
       article.innerHTML = imageMedia
     } else if (video) {
       const videoMedia = `
-        <a href="#" title="${title}, cliquez pour visionner la vidéo" class="photographer-media-link">
+        <a href="#" aria-label="${title}, cliquez pour visionner la vidéo" class="photographer-media-link">
           <video id=${id} class="media" controls="controls">
             <source src="../assets/photographers/${photographerId}/${video}" type="video/mp4">
               Your browser does not support the video tag.

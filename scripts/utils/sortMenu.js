@@ -1,6 +1,11 @@
 import { mediaFactory } from '../factories/media.js'
 import { likeMedia } from './likeMedia.js'
 
+//DOM elements
+const openMenu = document.getElementsByClassName('sort-btn')
+const closeMenu = document.getElementsByClassName('arrow-up-close')
+const sortList = document.getElementsByClassName('sort-list')
+const sortOption = Array.from(document.getElementsByClassName('sort-option'))
 
 //Sort medias by likes, date or title
 export function getSortedMediaList(medias, typeSort) {
@@ -49,15 +54,22 @@ function displaySortedMedia (mediasSorted, photographerId) {
 
 //Open and close drop-down sort menu
 export function dropDownMenu(medias, photographerId) {
-  const openMenu = document.getElementsByClassName('sort-btn')
-  const closeMenu = document.getElementsByClassName('arrow-up-close')
-  const sortList = document.getElementsByClassName('sort-list')
-  const sortOption = Array.from(document.getElementsByClassName('sort-option'))
+  keyboardEvent(medias, photographerId)
+  
+  if (openMenu) {
+    dropDownMenuOpened(medias, photographerId)
+  }
+  if (closeMenu) {
+    closeMenu[0].addEventListener('click', () => {
+      sortList[0].style.display = 'none'
+    })
+  }
+}
 
+function dropDownMenuOpened (medias, photographerId) {
   let mediaSorted = []
 
-  if (openMenu) {
-    openMenu[0].addEventListener('click', () => {
+  openMenu[0].addEventListener('click', () => {
       sortList[0].style.display = 'block';
     
     sortOption.forEach((option, index) => option.addEventListener('click', () => {
@@ -74,16 +86,17 @@ export function dropDownMenu(medias, photographerId) {
         displaySortedMedia(mediaSorted, photographerId)      
       }
     }))
-    })
-    
-  }
-  if (closeMenu) {
-    closeMenu[0].addEventListener('click', () => {
+  })
+}
+
+function keyboardEvent (medias, photographerId) {
+  document.addEventListener('keydown', (event) => {
+    if (event.code == 'Enter') {
+      dropDownMenuOpened(medias, photographerId)
+    }
+    // ARROW RIGHT TO STEP RIGHT
+    else if (event.code == 'Escape') {
       sortList[0].style.display = 'none';
-    });
-    /*window.addEventListener('click',  (e) =>{
-      if (e.target === sortList[0])
-      sortList[0].style.display = 'none';
-    });*/
-  }
+    }
+  })
 }

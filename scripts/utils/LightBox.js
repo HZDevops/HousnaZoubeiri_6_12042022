@@ -69,10 +69,50 @@ function displayPreviousMedia(element, media, name) {
         }
 
         let mediaHtml = media[currentIndex]
-        console.log(mediaHtml)
         let mediaName = name[currentIndex]
-console.log(mediaName);
+
         lightBoxMedia.innerHTML = `${mediaHtml}`
         lightBoxName.innerHTML = `${mediaName}`
     })
 }
+
+function keyboardEvent(currentMedia, currentMediaName) {
+    document.addEventListener('keydown', (event) => {
+        
+        // ESCAPE TO CLOSE
+        if (event.code == 'Escape') {
+            lightBox.style.display = 'none';
+            }
+
+            // ARROW RIGHT TO STEP RIGHT
+            else if (event.code == 'ArrowRight') {
+                currentIndex += 1;
+
+                if (currentIndex > currentMediaName.length - 1) {
+                    currentIndex = 0;
+                }
+
+                let src = currentMedia[currentIndex]
+                let nameSrc = currentMediaName[currentIndex]
+
+                lightBoxMedia.innerHTML = `${src}`
+                lightBoxName.innerHTML = `${nameSrc}`
+            }
+
+            // ARROW LEFT TO STEP LEFT
+            else if (event.code == 'ArrowLeft') {
+                currentIndex -= 1;
+
+                if (currentIndex < 0) {
+                    currentIndex = currentMedia.length - 1;
+                    currentIndex = currentMediaName.length - 1;
+                }
+
+                let src = currentMedia[currentIndex];
+                let nameSrc = currentMediaName[currentIndex];
+
+                lightBoxMedia.innerHTML = `${src}`;
+                lightBoxName.innerHTML = `${nameSrc}`;
+            }
+        });
+    }
