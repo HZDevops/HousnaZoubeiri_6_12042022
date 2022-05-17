@@ -1,4 +1,4 @@
-# Base de code du projet P6 - Parcours Front-end
+#Projet P6 - Créez un site accessible pour une plateforme de photographes
 
 ## Démarrer le projet
 
