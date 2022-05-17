@@ -255,10 +255,53 @@ input[data-error]::after {
     }
 }
 
+
+/*****Contact Modal confirmation*****/
+
+.modal-confirmation {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: #FFFFFF;
+
+}
+
+.modal-confirmation-content {
+  margin: 5% auto;
+  width: 100%;
+  max-width: 500px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #901c1c;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color:#fff;
+  font-size: 1.5rem;
+  padding-top: 10px;
+}
+
+.modal-confirmation-body {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 15px;
+    margin: 15px auto;
+    border-radius: 8px;
+}
+
+.modal-confirmation-body p {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
 /******DROP-DOWN FILTER********/
-/*.sort-container {
-    display: none;
-}*/
 
 .sort-container {
     display: flex;

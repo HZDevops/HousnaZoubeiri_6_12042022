@@ -1,3 +1,4 @@
+import { displayModalConfirmation, closeModalConfirmation } from './confirmationModal.js'
 // DOM form elements
 let form = document.getElementById('contact-form');
 const firstName = document.getElementById('first-name')
@@ -73,6 +74,7 @@ function submitForm() {
             email.style.border = 'none';
             message.style.border = 'none';
             consoleMessageValid(firstName, lastName, email, message);
+            displayModalConfirmation()
             document.getElementById('contact-form').reset();
         } else {
             errorVerification(firstName, lastName, email, message, regex);

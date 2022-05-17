@@ -4,6 +4,7 @@ import { mediaFactory } from '../factories/media.js'
 import { likeMedia } from '../utils/likeMedia.js'
 import { dropDownMenu } from '../utils/sortMenu.js'
 import { displayModal } from '../utils/contactForm.js'
+
 import { initLightBox } from '../utils/LightBox.js'
 
 //import { displayModal } from '../utils/contactForm.js'

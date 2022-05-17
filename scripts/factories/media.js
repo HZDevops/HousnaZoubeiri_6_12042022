@@ -18,9 +18,9 @@ export function mediaFactory (data, photographerId) {
         </a>
         <div class="media-info">
           <p class="media-info-title">${title}</p>
-          <div class="media-info-like">
+          <div class="media-info-like" aria-label="likes">
             <span class="like-number">${likes}</span>
-            <i aria-label="likes" class="fas fa-heart"></i>
+            <i class="fas fa-heart"></i>
           </div>
         </div>
       `;
@@ -35,9 +35,9 @@ export function mediaFactory (data, photographerId) {
         </a>
         <div class="media-info">
           <p class="media-info-title">${title}</p>
-          <div class="media-info-like">
+          <div class="media-info-like" aria-label="likes">
             <span class="like-number">${likes}</span>
-            <i aria-label="likes" class="fas fa-heart"></i>
+            <i class="fas fa-heart"></i>
           </div>
         </div>
       `;

@@ -1,6 +1,7 @@
 // DOM Lightbox elements
 
 const lightBox = document.getElementById('works-lightbox')
+//const closeLightBoxButton = document.querySelector('.close-lightbox-icon');
 const lightBoxPreviousMedia = document.querySelector('.left-arrow-lightbox')
 const lightBoxNextMedia = document.querySelector('.right-arrow-lightbox')
 
@@ -9,19 +10,19 @@ let lightBoxName = document.getElementById('works-lightbox-name')
 let currentIndex = 0
 
 export function initLightBox(currentMedia, currentMediaName) {
-  
-  let medias = Array.from(document.getElementsByClassName('media'));
+    let medias = Array.from(document.getElementsByClassName('photographer-media-link'));
+    
+    medias.forEach((media, index) =>
+        media.addEventListener('click', () => {
+        let mediaHtml = currentMedia[index];
+        let mediaName = currentMediaName[index];
+        currentIndex = index;
 
-  medias.forEach((media, index) =>
-    media.addEventListener('click', () => {
-      let mediaHtml = currentMedia[index];
-      let mediaName = currentMediaName[index];
-      currentIndex = index;
-
-      lightBox.style.display = 'block';
-      lightBoxMedia.innerHTML = `${mediaHtml}`;
-      lightBoxName.innerHTML = `${mediaName}`;
-    }))
+        lightBox.style.display = 'block';
+        lightBoxMedia.innerHTML = `${mediaHtml}`;
+        lightBoxName.innerHTML = `${mediaName}`;
+        
+        }))
 
     closeLightBox()
     displayNextMedia(lightBoxNextMedia, currentMedia, currentMediaName)
@@ -53,7 +54,7 @@ function displayNextMedia(element, media, name) {
         let mediaHtml = media[currentIndex]
         let mediaName = name[currentIndex]
   
-        lightBoxMedia.innerHTML = `${mediaHtml}`;
+        lightBoxMedia.innerHTML = `${mediaHtml}`
         lightBoxName.innerHTML = `${mediaName}`
     })
 }
@@ -97,6 +98,7 @@ function keyboardEvent(currentMedia, currentMediaName) {
 
                 lightBoxMedia.innerHTML = `${src}`
                 lightBoxName.innerHTML = `${nameSrc}`
+
             }
 
             // ARROW LEFT TO STEP LEFT
