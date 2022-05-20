@@ -221,13 +221,21 @@ input[data-error]::after {
     width: 10.6rem;
 }
 
+@media screen and (max-width: 800px) {
 
+    .sort-btn {
+        top: 27rem;
+    }
+     .arrow-down-open {
+        top: 29rem;
+    }
+}
 
 @media screen and (max-width: 900px) {
 
     .photograph-header {
-        flex-direction: column;
-         margin: 20px;
+        flex-wrap: wrap;
+        margin: 20px;
         padding-top: 0;
         align-items: center;
     }
@@ -250,8 +258,11 @@ input[data-error]::after {
         margin-right: 0;
     }
 
+    .sort-container {
+        margin-top:0;
+    }
+
     .media-card {
-        flex-basis: 100%;
         padding: 2rem 0;
         height: 30rem;
     }
@@ -323,7 +334,6 @@ input[data-error]::after {
 
 .sort-btn {
     position: absolute;
-    top: 24rem;
     left: 9rem;
     width: 10rem;
     background: #901c1c;

@@ -1,7 +1,6 @@
 // DOM Lightbox elements
 
 let lightBox = document.getElementById('works-lightbox')
-//const closeLightBoxButton = document.querySelector('.close-lightbox-icon');
 let lightBoxPreviousMedia = document.querySelector('.left-arrow-lightbox')
 let lightBoxNextMedia = document.querySelector('.right-arrow-lightbox')
 
