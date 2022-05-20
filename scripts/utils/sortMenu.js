@@ -1,37 +1,11 @@
-//import { mediaFactory } from '../factories/media.js'
 import { displayPhotographerMedia } from '../pages/photographer.js';
-//import { likeMedia } from './likeMedia.js'
-// import { initLightBox } from '../utils/LightBox.js'
 
-
-
-//Display media by sort list
-/*displayPhotographerMedia (mediasSorted, photographerId) {
-  const mediaSortedSection = document.querySelector('.media-section')
-  mediaSortedSection.innerHTML = ''
-
-  let mediaHtmlSorted = []
-  let mediaNameSorted = []
-
-  mediasSorted.forEach((media) => {
-    const mediaSortModel = mediaFactory(media, photographerId)
-    const mediaSortCardDOM = mediaSortModel.getMediaCardDOM()
-    mediaSortedSection.appendChild(mediaSortCardDOM)
-  })
-
-  const mediaDOMSorted = mediaFactory(mediasSorted, photographerId);
-  mediaHtmlSorted = mediaDOMSorted.getMediaDOM(mediasSorted).mediaHtmlArray;
-  mediaNameSorted = mediaDOMSorted.getMediaDOM(mediasSorted).mediaNameArray;
-     
-  likeMedia(mediasSorted, photographerId)
-  initLightBox(mediaHtmlSorted, mediaNameSorted)
-}*/
+let sortList = document.getElementsByClassName('sort-list')
 
 //Open and close drop-down sort menu
 export function dropDownMenu(medias, photographerId) {
- let openMenu = document.getElementsByClassName('sort-btn')
+  let openMenu = document.getElementsByClassName('sort-btn')
   let closeMenu = document.getElementsByClassName('arrow-up-close');
-  let sortList = document.getElementsByClassName('sort-list')
   
   keyboardEvent(medias, photographerId)
   
@@ -48,6 +22,7 @@ export function dropDownMenu(medias, photographerId) {
   }
 }
 
+//Display sorted photographer media
 function displaySortedMedia (medias, photographerId) {
  
   let btnSort = document.querySelector('.sort-btn')
@@ -109,6 +84,7 @@ export function getSortedMediaList(medias, typeSort) {
 
 //Handle keyboard event for accessibility
 function keyboardEvent (medias, photographerId) {
+
   document.addEventListener('keydown', (event) => {
     if (event.code == 'Enter') {
       displaySortedMedia(medias, photographerId)

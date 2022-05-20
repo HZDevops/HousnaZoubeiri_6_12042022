@@ -1,17 +1,18 @@
 // DOM Lightbox elements
 
-const lightBox = document.getElementById('works-lightbox')
+let lightBox = document.getElementById('works-lightbox')
 //const closeLightBoxButton = document.querySelector('.close-lightbox-icon');
 let lightBoxPreviousMedia = document.querySelector('.left-arrow-lightbox')
 let lightBoxNextMedia = document.querySelector('.right-arrow-lightbox')
 
 let lightBoxMedia = document.getElementById('works-lightbox-media')
 let lightBoxName = document.getElementById('works-lightbox-name')
- let currentIndex = 0;
+
+let currentIndex = 0;
 
 export function initLightBox(currentMedia, currentMediaName) {
    //console.log(currentMedia)
-   //console.log(currentMediaName)
+      console.log(currentMediaName)
     let medias = Array.from(document.getElementsByClassName('photographer-media-link'));
     
     medias.forEach((media, index) =>
@@ -19,7 +20,6 @@ export function initLightBox(currentMedia, currentMediaName) {
         let mediaHtml = currentMedia[index];
         let mediaName = currentMediaName[index];
         currentIndex = index;
-            //console.log(currentIndex)
         lightBox.style.display = 'block';
         lightBoxMedia.innerHTML = `${mediaHtml}`;
         lightBoxName.innerHTML = `${mediaName}`;
@@ -48,11 +48,14 @@ function closeLightBox() {
 function displayNextMedia(element, media, name) {
     
     element.addEventListener('click', () => {
-        currentIndex += 1
-        //console.log(currentIndex)
+        console.log(currentIndex);
+        currentIndex += 1;
+        console.log(currentIndex);
+        
         if (currentIndex > name.length - 1) {
           currentIndex = 0
         }
+         //console.log(currentIndex);
         let mediaHtml = media[currentIndex]
         let mediaName = name[currentIndex]
   //console.log(mediaHtml);

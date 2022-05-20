@@ -43,34 +43,35 @@ function displayPhotographerBanner(photographer) {
 
 // Display medias, price and likes number photographer 
 export function displayPhotographerMedia(medias, photographerId) {
-  const mediaSection = document.querySelector(".media-section")
-  const likeSection = document.querySelector(".like-section")
-  mediaSection.innerHTML = ''
-  
-  let mediaHtml = []
-  let mediaName = []
-  
+  console.log(medias);
+  const mediaSection = document.querySelector('.media-section');
+  const likeSection = document.querySelector('.like-section');
+  mediaSection.innerHTML = '';
+
+  let mediaHtml = [];
+  let mediaName = [];
+
   medias.forEach((media) => {
-    const mediaModel = mediaFactory(media, photographerId)
-    const mediaCardDOM = mediaModel.getMediaCardDOM()
-    mediaSection.appendChild(mediaCardDOM)
-  })
+    const mediaModel = mediaFactory(media, photographerId);
+    const mediaCardDOM = mediaModel.getMediaCardDOM();
+    mediaSection.appendChild(mediaCardDOM);
+  });
 
-  const mediaDOM = mediaFactory(medias,photographerId)
-  mediaHtml = mediaDOM.getMediaDOM(medias).mediaHtmlArray
-  mediaName = mediaDOM.getMediaDOM(medias).mediaNameArray
+  const mediaDOM = mediaFactory(medias, photographerId);
+  mediaHtml = mediaDOM.getMediaDOM(medias).mediaHtmlArray;
+  mediaName = mediaDOM.getMediaDOM(medias).mediaNameArray;
+  
+  initLightBox(mediaHtml, mediaName);
 
-  initLightBox(mediaHtml, mediaName)
-   
-  const totalLikes = mediaDOM.getLikeDOM(medias)
+  const totalLikes = mediaDOM.getLikeDOM(medias);
   const likeCounterSection = `
         <div class="like-counter">
           <p id="total-like-number">${totalLikes}</p>
           <i class="fas fa-heart"></i>
         </div>
         <p>${photographer.price}&euro; / jour</p>
-    `
-  likeSection.innerHTML = likeCounterSection
+    `;
+  likeSection.innerHTML = likeCounterSection;
 }
 
 const data = await getData()
