@@ -45,6 +45,7 @@ function displayPhotographerBanner(photographer) {
 export function displayPhotographerMedia(medias, photographerId) {
   const mediaSection = document.querySelector(".media-section")
   const likeSection = document.querySelector(".like-section")
+  mediaSection.innerHTML = ''
   
   let mediaHtml = []
   let mediaName = []
@@ -85,5 +86,3 @@ displayPhotographerMedia(mediasByPhotographer, photographerId)
 likeMedia(mediasByPhotographer, photographerId)
 dropDownMenu(mediasByPhotographer, photographerId)
 
-//const mediaSorted = getSortedMediaList(mediasByPhotographer, 'title')
-//console.log(mediaSorted)

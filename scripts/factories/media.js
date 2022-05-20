@@ -68,23 +68,9 @@ export function mediaFactory (data, photographerId) {
     medias.forEach((media) => {
       mediaNameArray.push(media.title)
     })
-    console.log(mediaHtmlArray);
     return { mediaHtmlArray, mediaNameArray }
   }
-    
-      /*if (image){
-        sourceMedia = `../assets/photographers/${photographerId}/${image}`
-        nameMedia = title
-      }
-      else if (video){
-        sourceMedia = `../assets/photographers/${photographerId}/${video}`
-        nameMedia = title
-      }
-      //console.log(sourceMedia)
-      //console.log(nameMedia)
-      //return {sourceMedia, nameMedia}*/
   
-
   return {
     getMediaCardDOM,
     getLikeDOM,

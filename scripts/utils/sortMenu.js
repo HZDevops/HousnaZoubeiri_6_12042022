@@ -1,11 +1,79 @@
-import { mediaFactory } from '../factories/media.js'
-import { likeMedia } from './likeMedia.js'
+//import { mediaFactory } from '../factories/media.js'
+import { displayPhotographerMedia } from '../pages/photographer.js';
+//import { likeMedia } from './likeMedia.js'
+// import { initLightBox } from '../utils/LightBox.js'
 
-//DOM elements
-const openMenu = document.getElementsByClassName('sort-btn')
-const closeMenu = document.getElementsByClassName('arrow-up-close')
-const sortList = document.getElementsByClassName('sort-list')
-const sortOption = Array.from(document.getElementsByClassName('sort-option'))
+
+
+//Display media by sort list
+/*displayPhotographerMedia (mediasSorted, photographerId) {
+  const mediaSortedSection = document.querySelector('.media-section')
+  mediaSortedSection.innerHTML = ''
+
+  let mediaHtmlSorted = []
+  let mediaNameSorted = []
+
+  mediasSorted.forEach((media) => {
+    const mediaSortModel = mediaFactory(media, photographerId)
+    const mediaSortCardDOM = mediaSortModel.getMediaCardDOM()
+    mediaSortedSection.appendChild(mediaSortCardDOM)
+  })
+
+  const mediaDOMSorted = mediaFactory(mediasSorted, photographerId);
+  mediaHtmlSorted = mediaDOMSorted.getMediaDOM(mediasSorted).mediaHtmlArray;
+  mediaNameSorted = mediaDOMSorted.getMediaDOM(mediasSorted).mediaNameArray;
+     
+  likeMedia(mediasSorted, photographerId)
+  initLightBox(mediaHtmlSorted, mediaNameSorted)
+}*/
+
+//Open and close drop-down sort menu
+export function dropDownMenu(medias, photographerId) {
+ let openMenu = document.getElementsByClassName('sort-btn')
+  let closeMenu = document.getElementsByClassName('arrow-up-close');
+  let sortList = document.getElementsByClassName('sort-list')
+  
+  keyboardEvent(medias, photographerId)
+  
+  if (openMenu) {
+    openMenu[0].addEventListener('click', () => {
+      sortList[0].style.display = 'block';
+    });
+    displaySortedMedia(medias, photographerId)
+  }
+  if (closeMenu) {
+    closeMenu[0].addEventListener('click', () => {
+      sortList[0].style.display = 'none'
+    })
+  }
+}
+
+function displaySortedMedia (medias, photographerId) {
+ 
+  let btnSort = document.querySelector('.sort-btn')
+  let sortList = document.getElementsByClassName('sort-list')
+  let sortOption = Array.from(document.getElementsByClassName('sort-option'))
+  
+  let mediaSorted = []
+
+     sortOption.forEach((option, index) => option.addEventListener('click', () => {
+      sortList[0].style.display = 'none';
+      
+      if (index == 0) {
+        btnSort.innerHTML='Popularité'
+        mediaSorted = getSortedMediaList(medias, 'popularity')
+      }
+      else if (index == 1) {
+        btnSort.innerHTML = 'Date'
+        mediaSorted = getSortedMediaList(medias, 'date')
+      }
+      else if (index == 2) {
+        btnSort.innerHTML = 'Titre'
+        mediaSorted = getSortedMediaList(medias, 'title')    
+      }
+      displayPhotographerMedia(mediaSorted, photographerId)
+    }))
+}
 
 //Sort medias by likes, date or title
 export function getSortedMediaList(medias, typeSort) {
@@ -39,60 +107,11 @@ export function getSortedMediaList(medias, typeSort) {
   return mediaSorted;
 }
 
-//Display media by sort list
-function displaySortedMedia (mediasSorted, photographerId) {
-  const mediaSortedSection = document.querySelector('.media-section')
-  mediaSortedSection.innerHTML = ''
-
-  mediasSorted.forEach((media) => {
-    const mediaSortModel = mediaFactory(media, photographerId)
-    const mediaSortCardDOM = mediaSortModel.getMediaCardDOM()
-    mediaSortedSection.appendChild(mediaSortCardDOM)
-  })
-  likeMedia(mediasSorted, photographerId)
-}
-
-//Open and close drop-down sort menu
-export function dropDownMenu(medias, photographerId) {
-  keyboardEvent(medias, photographerId)
-  
-  if (openMenu) {
-    dropDownMenuOpened(medias, photographerId)
-  }
-  if (closeMenu) {
-    closeMenu[0].addEventListener('click', () => {
-      sortList[0].style.display = 'none'
-    })
-  }
-}
-
-function dropDownMenuOpened (medias, photographerId) {
-  let mediaSorted = []
-
-  openMenu[0].addEventListener('click', () => {
-      sortList[0].style.display = 'block';
-    
-    sortOption.forEach((option, index) => option.addEventListener('click', () => {
-      if (index == 0) {
-        mediaSorted = getSortedMediaList(medias, 'popularity')
-        displaySortedMedia(mediaSorted, photographerId)
-      }
-      else if (index == 1) {
-        mediaSorted = getSortedMediaList(medias, 'date')
-        displaySortedMedia(mediaSorted, photographerId)
-       }
-      else if (index == 2) {
-        mediaSorted = getSortedMediaList(medias, 'title')
-        displaySortedMedia(mediaSorted, photographerId)      
-      }
-    }))
-  })
-}
-
+//Handle keyboard event for accessibility
 function keyboardEvent (medias, photographerId) {
   document.addEventListener('keydown', (event) => {
     if (event.code == 'Enter') {
-      dropDownMenuOpened(medias, photographerId)
+      displaySortedMedia(medias, photographerId)
     }
     // ARROW RIGHT TO STEP RIGHT
     else if (event.code == 'Escape') {
