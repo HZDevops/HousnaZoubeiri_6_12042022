@@ -7,6 +7,7 @@ import { displayModal } from '../utils/contactForm.js';
 
 import { initLightBox } from '../utils/LightBox.js';
 
+
 //import { displayModal } from '../utils/contactForm.js'
 
 /**
@@ -14,7 +15,8 @@ import { initLightBox } from '../utils/LightBox.js';
  * @param {Array} data
  * @returns {Object}
  **/
-function getPhotographerDetails(data) {
+export function getPhotographerDetails(data) {
+  
   const photographers = data.photographers;
   const medias = data.media;
 
@@ -51,26 +53,27 @@ export function displayPhotographerMedia(medias, photographerId) {
   let mediaHtml = []
   let mediaName = []
   
-
   medias.forEach((media) => {
     const mediaModel = mediaFactory(media, photographerId);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaCardDOM);
   });
+
 const mediaDOM = mediaFactory(mediasByPhotographer, photographerId);
 mediaHtml = mediaDOM.getMediaDOM(mediasByPhotographer).mediaHtmlArray;
 mediaName = mediaDOM.getMediaDOM(mediasByPhotographer).mediaNameArray;
-initLightBox(mediaHtml, mediaName)
 
-  const totalLikes = mediaDOM.getLikeDOM(medias);
-  const likeCounterSection = `
+const totalLikes = mediaDOM.getLikeDOM(medias);
+ const likeCounterSection = `
         <div class="like-counter">
           <p id="total-like-number">${totalLikes}</p>
           <i class="fas fa-heart"></i>
         </div>
         <p>${photographer.price}&euro; / jour</p>
     `;
-  likeSection.innerHTML = likeCounterSection;
+  likeSection.innerHTML = likeCounterSection
+  initLightBox(mediaHtml, mediaName)
+
 }
 
 const data = await getData()
@@ -80,14 +83,10 @@ const photographer = photographerData.photographer;
 const photographerId = photographerData.photographerIdInUrl;
 const mediasByPhotographer = photographerData.mediaListPhotographer;
 
-
-
-displayPhotographerBanner(photographer);
-displayModal(photographer);
-displayPhotographerMedia(mediasByPhotographer, photographerId);
-
-
-
+displayPhotographerBanner(photographer)
+dropDownMenu(mediasByPhotographer, photographerId)
+displayModal(photographer)
+displayPhotographerMedia(mediasByPhotographer, photographerId)
 likeMedia()
-dropDownMenu(mediasByPhotographer, photographerId);
+
 

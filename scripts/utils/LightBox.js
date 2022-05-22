@@ -1,16 +1,16 @@
 // DOM Lightbox elements
 
-const lightBox = document.getElementById('works-lightbox');
-//const closeLightBoxButton = document.querySelector('.close-lightbox-icon');
-
+let lightBox = document.getElementById('works-lightbox');
 let lightBoxMedia = document.getElementById('works-lightbox-media');
 let lightBoxName = document.getElementById('works-lightbox-name');
+
 let currentIndex = 0;
 
 export function initLightBox(currentMedia, currentMediaName) {
   let medias = Array.from(document.getElementsByClassName('media'));
 
-  medias.forEach((media, index) =>media.addEventListener('click', () => {
+  medias.forEach((media, index) =>
+    media.addEventListener('click', () => {
       let mediaHtml = currentMedia[index];
       let mediaName = currentMediaName[index];
       currentIndex = index;
@@ -21,8 +21,9 @@ export function initLightBox(currentMedia, currentMediaName) {
     })
   );
 
-  displayNextMedia(document.querySelector('.right-arrow-lightbox'), currentMedia, currentMediaName);
-  displayPreviousMedia(document.querySelector('.left-arrow-lightbox'),currentMedia, currentMediaName);
+
+  displayNextMedia(currentMedia, currentMediaName);
+  displayPreviousMedia(currentMedia, currentMediaName);
   closeLightBox()
   keyboardEvent(currentMedia, currentMediaName)
 }
@@ -36,24 +37,29 @@ function closeLightBox() {
 }
 
 // Go to next media
-function displayNextMedia(elt, media, name) {
-  elt.addEventListener('click', () => {
-    currentIndex += 1;
+export function displayNextMedia(media, name) {
+ const nextButton = document.querySelector('.lightbox-right-arrow');
+  
+ nextButton.addEventListener('click', () => {
+      currentIndex += 1;
+  console.log('bonjour');
+      if (currentIndex > name.length - 1) {
+        currentIndex = 0;
+      }
+      let mediaHtml = media[currentIndex];
+      let mediaName = name[currentIndex];
 
-    if (currentIndex > name.length - 1) {
-      currentIndex = 0;
-    }
-    let mediaHtml = media[currentIndex];
-    let mediaName = name[currentIndex];
-
-    lightBoxMedia.innerHTML = `${mediaHtml}`;
-    lightBoxName.innerHTML = `${mediaName}`;
-  });
+      lightBoxMedia.innerHTML = `${mediaHtml}`;
+      lightBoxName.innerHTML = `${mediaName}`;
+    });
+  
 }
 
-// Go to previous media
-function displayPreviousMedia(elt, media, name) {
-  elt.addEventListener('click', () => {
+//Go to previous media
+function displayPreviousMedia(media, name) {
+  const previousButton = document.querySelector('.lightbox-left-arrow');
+  
+  previousButton.addEventListener('click', () => {
     currentIndex -= 1;
 
     if (currentIndex < 0) {
@@ -77,6 +83,7 @@ function keyboardEvent(currentMedia, currentMediaName) {
 
     // ARROW RIGHT TO STEP RIGHT
     else if (event.code == 'ArrowRight') {
+      console.log('bonjour')
       currentIndex += 1;
 
       if (currentIndex > currentMediaName.length - 1) {
