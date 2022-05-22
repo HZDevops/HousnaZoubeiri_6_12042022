@@ -1,4 +1,4 @@
-import { displayModalConfirmation, closeModalConfirmation } from './confirmationModal.js'
+import { displayModalConfirmation} from './confirmationModal.js'
 // DOM form elements
 let form = document.getElementById('contact-form');
 const firstName = document.getElementById('first-name')

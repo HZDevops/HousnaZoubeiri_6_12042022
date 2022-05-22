@@ -1,11 +1,11 @@
-import { getData } from '../utils/getData.js'
-import { photographerFactory } from '../factories/photographer.js'
-import { mediaFactory } from '../factories/media.js'
-import { likeMedia } from '../utils/likeMedia.js'
-import { dropDownMenu } from '../utils/sortMenu.js'
-import { displayModal } from '../utils/contactForm.js'
+import { getData } from '../utils/getData.js';
+import { photographerFactory } from '../factories/photographer.js';
+import { mediaFactory } from '../factories/media.js';
+import { likeMedia } from '../utils/likeMedia.js';
+import { dropDownMenu } from '../utils/sortMenu.js';
+import { displayModal } from '../utils/contactForm.js';
 
-import { initLightBox } from '../utils/LightBox.js'
+import { initLightBox } from '../utils/LightBox.js';
 
 //import { displayModal } from '../utils/contactForm.js'
 
@@ -15,16 +15,19 @@ import { initLightBox } from '../utils/LightBox.js'
  * @returns {Object}
  **/
 function getPhotographerDetails(data) {
+  const photographers = data.photographers;
+  const medias = data.media;
 
-  const photographers = data.photographers
-  const medias = data.media
-  
-  const urlSearchParams = new URLSearchParams(window.location.search)
-  const photographerIdInUrl = urlSearchParams.get('id')
-  const photographer = photographers.find((element) => element.id == photographerIdInUrl)
-  const mediaListPhotographer = medias.filter((element) => element.photographerId == photographerIdInUrl)
-   
-  return { photographer, photographerIdInUrl, mediaListPhotographer}
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const photographerIdInUrl = urlSearchParams.get('id');
+  const photographer = photographers.find(
+    (element) => element.id == photographerIdInUrl
+  );
+  const mediaListPhotographer = medias.filter(
+    (element) => element.photographerId == photographerIdInUrl
+  );
+
+  return { photographer, photographerIdInUrl, mediaListPhotographer };
 }
 
 /**
@@ -33,35 +36,31 @@ function getPhotographerDetails(data) {
  **/
 
 function displayPhotographerBanner(photographer) {
-  const banner = document.querySelector('.photograph-header')
-  const photographerModel = photographerFactory(photographer)
-  
-  banner.appendChild(photographerModel.getUserInformation())
-  banner.appendChild(photographerModel.getUserPicture())
+  const banner = document.querySelector('.photograph-header');
+  const photographerModel = photographerFactory(photographer);
+
+  banner.appendChild(photographerModel.getUserInformation());
+  banner.appendChild(photographerModel.getUserPicture());
 }
 
-
-// Display medias, price and likes number photographer 
+// Display medias, price and likes number photographer
 export function displayPhotographerMedia(medias, photographerId) {
-  console.log(medias);
   const mediaSection = document.querySelector('.media-section');
   const likeSection = document.querySelector('.like-section');
-  mediaSection.innerHTML = '';
 
-  let mediaHtml = [];
-  let mediaName = [];
+  let mediaHtml = []
+  let mediaName = []
+  
 
   medias.forEach((media) => {
     const mediaModel = mediaFactory(media, photographerId);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaCardDOM);
   });
-
-  const mediaDOM = mediaFactory(medias, photographerId);
-  mediaHtml = mediaDOM.getMediaDOM(medias).mediaHtmlArray;
-  mediaName = mediaDOM.getMediaDOM(medias).mediaNameArray;
-  
-  initLightBox(mediaHtml, mediaName);
+const mediaDOM = mediaFactory(mediasByPhotographer, photographerId);
+mediaHtml = mediaDOM.getMediaDOM(mediasByPhotographer).mediaHtmlArray;
+mediaName = mediaDOM.getMediaDOM(mediasByPhotographer).mediaNameArray;
+initLightBox(mediaHtml, mediaName)
 
   const totalLikes = mediaDOM.getLikeDOM(medias);
   const likeCounterSection = `
@@ -77,13 +76,18 @@ export function displayPhotographerMedia(medias, photographerId) {
 const data = await getData()
 const photographerData = getPhotographerDetails(data)
 
-const photographer = photographerData.photographer
-const photographerId = photographerData.photographerIdInUrl
-const mediasByPhotographer = photographerData.mediaListPhotographer
+const photographer = photographerData.photographer;
+const photographerId = photographerData.photographerIdInUrl;
+const mediasByPhotographer = photographerData.mediaListPhotographer;
 
-displayPhotographerBanner(photographer)
-displayModal(photographer)
-displayPhotographerMedia(mediasByPhotographer, photographerId)
-likeMedia(mediasByPhotographer, photographerId)
-dropDownMenu(mediasByPhotographer, photographerId)
+
+
+displayPhotographerBanner(photographer);
+displayModal(photographer);
+displayPhotographerMedia(mediasByPhotographer, photographerId);
+
+
+
+likeMedia()
+dropDownMenu(mediasByPhotographer, photographerId);
 

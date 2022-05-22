@@ -8,7 +8,7 @@ export function updateLikesNumber() {
 }
 
 //Like or unlike media and update the total like counter of the photographer page
-export function likeMedia(medias, photographerId) {
+export function likeMedia() {
   const likeMedia = document.getElementsByClassName('media-info-like');
   const likeCounter = document.querySelector('#total-like-number');
   

@@ -5,7 +5,6 @@ const main = document.getElementById('main')
 const modal = document.getElementById('contact-modal')
 const closeButton = document.getElementById('close-btn')
 const h2 = document.getElementById('form-title')
-const sendButton = document.getElementsByClassName('form-submit')
 
 export function displayModal(data) {
   h2.innerHTML = 'Contactez-moi <br>' + data.name;
