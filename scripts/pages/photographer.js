@@ -49,10 +49,11 @@ function displayPhotographerBanner(photographer) {
 export function displayPhotographerMedia(medias, photographerId) {
   const mediaSection = document.querySelector('.media-section');
   const likeSection = document.querySelector('.like-section');
+  //const lightBoxSection = document.getElementById('works-lightbox');
 
   let mediaHtml = []
   let mediaName = []
-  
+    console.log(medias);
   medias.forEach((media) => {
     const mediaModel = mediaFactory(media, photographerId);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
@@ -62,7 +63,7 @@ export function displayPhotographerMedia(medias, photographerId) {
 const mediaDOM = mediaFactory(mediasByPhotographer, photographerId);
 mediaHtml = mediaDOM.getMediaDOM(mediasByPhotographer).mediaHtmlArray;
 mediaName = mediaDOM.getMediaDOM(mediasByPhotographer).mediaNameArray;
-
+  console.log(mediaHtml);
 const totalLikes = mediaDOM.getLikeDOM(medias);
  const likeCounterSection = `
         <div class="like-counter">

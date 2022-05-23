@@ -63,9 +63,12 @@ function sortMedias(medias, photographerId) {
 
 //Display sorted medias
 function displaySortedMedia(mediasSorted, photographerId) {
-  const mediaSortedSection = document.querySelector('.media-section');
+
+  const mediaSortedSection = document.querySelector('.media-section')
+  const lightBox = document.getElementById('works-lightbox')
   
-  mediaSortedSection.innerHTML = '';
+  mediaSortedSection.innerHTML = ''
+  lightBox.innerHTML = ''
 
   displayPhotographerMedia(mediasSorted, photographerId)
 }
