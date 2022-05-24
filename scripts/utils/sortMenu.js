@@ -68,7 +68,7 @@ function displaySortedMedia(mediasSorted, photographerId) {
   const lightBox = document.getElementById('works-lightbox')
   
   mediaSortedSection.innerHTML = ''
-  
+  lightBox.innerHTML = ''
 
   displayPhotographerMedia(mediasSorted, photographerId)
 }
