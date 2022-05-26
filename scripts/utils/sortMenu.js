@@ -25,27 +25,35 @@ export function dropDownMenu(medias, photographerId) {
 //Sort photographer medias by likes, date and title
 function sortMedias(medias, photographerId) {
   let mediaSorted = [];
+
   let sortButton = document.querySelector('.sort-btn');
   let sortList = document.getElementsByClassName('sort-list');
   let sortOption = Array.from(document.getElementsByClassName('sort-option'));
 
+  const arrowDown = document.createElement('span');
+  arrowDown.classList.add('fas','fa-chevron-down','arrow-down-open');
+  
   sortOption.forEach((option, index) => option.addEventListener('click', () => {
     sortList[0].style.display = 'none'
 
     if (index == 0) {
-      sortButton.innerHTML = `Popularité`;
+      sortButton.innerHTML = `Popularité` 
+      sortButton.appendChild(arrowDown)
+      
 
       mediaSorted = medias.sort((a, b) => { 
       return b.likes - a.likes
       })
       } else if (index == 1) {
-      sortButton.innerHTML = `Date`;
+      sortButton.innerHTML = `Date`
+      sortButton.appendChild(arrowDown)
 
       mediaSorted = medias.sort((a, b) => { 
       return new Date(b.date) - new Date(a.date)
       })
     } else if (index == 2) {
-      sortButton.innerHTML = `Titre`;
+      sortButton.innerHTML = `Titre`
+      sortButton.appendChild(arrowDown)
 
       mediaSorted = medias.sort((a, b) => { 
       if (a.title < b.title) {

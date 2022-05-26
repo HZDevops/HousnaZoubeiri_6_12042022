@@ -73,7 +73,7 @@ nextButton.addEventListener('click', () => {
 
 //Go to previous media
 function displayPreviousMedia(media, name) {
-
+console.log(name)
   let lightBoxMedia = document.getElementById('works-lightbox-media');
   let lightBoxName = document.getElementById('works-lightbox-name');
   const previousButton = document.querySelector('.lightbox-left-arrow');
@@ -111,7 +111,7 @@ console.log(currentIndex);
 
       let src = currentMedia[currentIndex];
       let nameSrc = currentMediaName[currentIndex];
-console.log(src)
+
       lightBoxMedia.innerHTML = `${src}`;
       console.log(lightBoxMedia)
       lightBoxName.innerHTML = `${nameSrc}`;
