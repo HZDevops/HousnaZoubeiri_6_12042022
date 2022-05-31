@@ -1,6 +1,7 @@
 import { displayModalConfirmation} from './confirmationModal.js'
+
 // DOM form elements
-let form = document.getElementById('contact-form');
+let form = document.getElementById('contact-form')
 const firstName = document.getElementById('first-name')
 const lastName = document.getElementById('last-name')
 const email = document.getElementById('email')
@@ -8,7 +9,7 @@ const message = document.getElementById('message')
 const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ]+$/
 
 
-// Check FirstName and LastName
+// Check firstname and lastname inputs
 function checkNames(elt, regex) {
     if (elt.value.trim().length < 2 || elt.value.trim() === "" || !elt.value.match(regex)) {
         elt.parentElement.setAttribute('data-error-visible', 'true');
@@ -21,6 +22,7 @@ function checkNames(elt, regex) {
     }
 }
 
+// Check email input
 function checkEmail(elt) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (elt.value.trim().match(re)) {
@@ -34,6 +36,7 @@ function checkEmail(elt) {
     }
 }
 
+//Check message input
 function  checkMessage(elt) {
     if (elt.value.trim() === '' || elt.value.trim() == null) {
         elt.parentElement.setAttribute('data-error-visible', 'true');
@@ -46,6 +49,7 @@ function  checkMessage(elt) {
     }
 }
 
+//Check all validity inputs
 function errorVerification(firstName, lastName, email, message, regex) {
   checkNames(firstName, regex);
   checkNames(lastName, regex);
@@ -53,6 +57,7 @@ function errorVerification(firstName, lastName, email, message, regex) {
   checkMessage(message);
 }
 
+//Display user inputs
 function consoleMessageValid(firstName, lastName, email, message) {
     console.group('Contact Message');
     console.log('Prénom : ' + firstName.value);
@@ -62,7 +67,7 @@ function consoleMessageValid(firstName, lastName, email, message) {
     console.groupEnd();
 }
 
-// SEND FORM
+//Send contact form
 function submitForm() {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -81,4 +86,5 @@ function submitForm() {
         }
     });
 }
-    submitForm()
+
+submitForm()

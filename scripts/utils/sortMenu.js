@@ -1,37 +1,36 @@
 import { displayPhotographerMedia } from '../pages/photographer.js'
 
-
 //Open and close drop-down sort menu
 export function dropDownMenu(medias, photographerId) {
-  let openMenu = document.getElementsByClassName('sort-btn');
-  let closeMenu = document.getElementsByClassName('arrow-up-close');
-  let sortList = document.getElementsByClassName('sort-list');
+  let openMenu = document.getElementsByClassName('sort-btn')
+  let closeMenu = document.getElementsByClassName('arrow-up-close')
+  let sortList = document.getElementsByClassName('sort-list')
   
-  //keyboardEvent(medias, photographerId);
+  keyboardEvent(medias, photographerId)
 
   if (openMenu) {
     openMenu[0].addEventListener('click', () => {
-      sortList[0].style.display = 'block';
-    });
+      sortList[0].style.display = 'block'
+    })
     sortMedias(medias, photographerId)
   }
   if (closeMenu) {
     closeMenu[0].addEventListener('click', () => {
-      sortList[0].style.display = 'none';
-    });
+      sortList[0].style.display = 'none'
+    })
   }
 }
 
 //Sort photographer medias by likes, date and title
 function sortMedias(medias, photographerId) {
-  let mediaSorted = [];
+  let mediaSorted = []
 
-  let sortButton = document.querySelector('.sort-btn');
-  let sortList = document.getElementsByClassName('sort-list');
-  let sortOption = Array.from(document.getElementsByClassName('sort-option'));
+  let sortButton = document.querySelector('.sort-btn')
+  let sortList = document.getElementsByClassName('sort-list')
+  let sortOption = Array.from(document.getElementsByClassName('sort-option'))
 
-  const arrowDown = document.createElement('span');
-  arrowDown.classList.add('fas','fa-chevron-down','arrow-down-open');
+  const arrowDown = document.createElement('span')
+  arrowDown.classList.add('fas','fa-chevron-down','arrow-down-open')
   
   sortOption.forEach((option, index) => option.addEventListener('click', () => {
     sortList[0].style.display = 'none'
@@ -40,7 +39,6 @@ function sortMedias(medias, photographerId) {
       sortButton.innerHTML = `Popularité` 
       sortButton.appendChild(arrowDown)
       
-
       mediaSorted = medias.sort((a, b) => { 
       return b.likes - a.likes
       })
@@ -60,9 +58,9 @@ function sortMedias(medias, photographerId) {
         return -1;
       }
       if (a.title > b.title) {
-        return 1;
+        return 1
       }
-      return 0;
+      return 0
      })
     }
   displaySortedMedia(mediaSorted, photographerId)
@@ -71,7 +69,6 @@ function sortMedias(medias, photographerId) {
 
 //Display sorted medias
 function displaySortedMedia(mediasSorted, photographerId) {
-
   const mediaSortedSection = document.querySelector('.media-section')
   const lightBox = document.getElementById('works-lightbox')
   
@@ -81,15 +78,16 @@ function displaySortedMedia(mediasSorted, photographerId) {
   displayPhotographerMedia(mediasSorted, photographerId)
 }
 
-
-/*function keyboardEvent(medias, photographerId) {
+//Keyboard events fro accessibility
+function keyboardEvent(medias, photographerId) {
+  let sortList = document.getElementsByClassName('sort-list')
   document.addEventListener('keydown', (event) => {
     if (event.code == 'Enter') {
-      dropDownMenuOpened(medias, photographerId);
+      sortMedias(medias, photographerId);
     }
-    // ARROW RIGHT TO STEP RIGHT
+    // Arrow right to step right
     else if (event.code == 'Escape') {
-      sortList[0].style.display = 'none';
+      sortList[0].style.display = 'none'
     }
-  });
-}*/
+  })
+}
