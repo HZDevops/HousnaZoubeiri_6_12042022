@@ -1,8 +1,6 @@
 export function mediaFactory (data, photographerId) {
 
-  const { id, title, image, video, likes, date, price } = data
-
-  const totalLikes = 0
+  const { id, title, image, video, likes } = data
 
   //Create photographer media cards
   function getMediaCardDOM() {

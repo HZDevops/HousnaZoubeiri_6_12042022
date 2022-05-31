@@ -22,13 +22,12 @@
       <div class="sort-container">
         <span id="sort-text">Trier par</span>
         <div id="sort-wrapper">
-          <button class="sort-btn" aria-haspopup="listbox">Popularité</button>
-          <span class="fas fa-chevron-down arrow-down-open" role='button'></span>
+          <button class="sort-btn" aria-haspopup="listbox">Popularité<span class="fas fa-chevron-down arrow-down-open" role='button'></span></button>
           <ul class="sort-list" role="listbox">
-            <li class="sort-option" role="option">Popularité <span class="fas fa-chevron-up arrow-up-close"></span>
+            <li class="sort-option border-sort-top" role="option">Popularité <span class="fas fa-chevron-up arrow-up-close"></span>
             </li>
             <li class="sort-option" role="option">Date</li>
-            <li class="sort-option" role="option">Titre</li>
+            <li class="sort-option border-sort-bottom" role="option">Titre</li>
           </ul>
         </div>
       </div>
@@ -48,7 +47,7 @@
           </button>
         </header>
         <div class="formData" data-error="Vous devez entrer votre prénom." data-error-visible="false">
-					<label for="firstname" id="label-firstname">Prénom</label>
+					<label for="first-name" id="label-firstname">Prénom</label>
 					<input name="first-name" id="first-name" aria-labelledby="label-firstname" placeholder="Prénom"/>
 				</div>
         <div class="formData" data-error="Vous devez entrer votre nom." data-error-visible="false">
@@ -61,7 +60,7 @@
         </div>
         <div class="formData" data-error="Vous devez entrer votre message." data-error-visible="false">
           <label for="message" id="label-message">Message</label>
-          <textarea name="message" id="message"aria-labelledby="label-message" placeholder="Votre message..."></textarea>
+          <textarea name="message" id="message" aria-labelledby="label-message" placeholder="Votre message..."></textarea>
         </div>
         <input type="submit" value="Envoyer" class="form-submit" title="Send">
       </form>
@@ -77,13 +76,6 @@
     </div>
     <!--LightBox-->
     <div id="works-lightbox" aria-hidden="true">
-      <div id="lightbox-body" role="dialog">
-        <span class="fas fa-times close-lightbox-icon" role="button" aria-label="image closeup view"></span>
-        <span class="fas fa-chevron-left left-arrow-lightbox" role="button" aria-label="Previous image"></span>
-        <span class="fas fa-chevron-right right-arrow-lightbox" role="button" taria-label="Next image"></span>
-        <div id="works-lightbox-media"></div>
-        <div id="works-lightbox-name"></div>
-      </div>
     </div>
     <script type="module" src="scripts/pages/photographer.js"></script>
   </body>

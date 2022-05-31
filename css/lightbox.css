@@ -41,7 +41,8 @@
     top: .5rem;
 }
 
-.left-arrow-lightbox {
+.lightbox-left-arrow {
+    cursor: pointer;
     color: #901C1C;
     font-size: 2rem;
     left: -3rem;
@@ -49,7 +50,8 @@
     top: 48%;
 }
 
-.right-arrow-lightbox {
+.lightbox-right-arrow {
+    cursor: pointer;
     color: #901C1C;
     font-size: 2rem;
     position: absolute;
@@ -82,14 +84,14 @@ aside article:nth-last-child(1) {
         top: .5rem;
     }
 
-    .left-arrow-lightbox {
-        cursor: pointer;
+    .lightbox-left-arrow {
+       
         left: 0;
         top: 48%;
     }
 
-    .right-arrow-lightbox {
-        cursor: pointer;
+    .lightbox-right-arrow {
+        
         right: 0;
         top: 48%;
     }
