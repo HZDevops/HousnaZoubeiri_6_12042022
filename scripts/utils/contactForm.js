@@ -17,12 +17,12 @@ export function displayModal(data) {
     main.style.display = 'none'
     closeButton.focus()
   })
-    keyboardEvent();
+  keyboardEvent();
 }
 
 // Close modal contact form
 export function closeModal() {
-   closeButton.addEventListener('click', function () {
+  closeButton.addEventListener('click', function () {
     main.setAttribute('aria-hidden', 'false')
     modal.setAttribute('aria-hidden', 'true')
     modal.style.display = 'none'
@@ -34,7 +34,7 @@ export function closeModal() {
 //Keyboard events for accessibility
 function keyboardEvent() {
   document.addEventListener('keydown', (event) => {
-    if (event.code == 'Escape') {
+    if (event.code === 'Escape') {
       modal.style.display = 'none';
       main.style.display = 'block';
       contactButton.focus();

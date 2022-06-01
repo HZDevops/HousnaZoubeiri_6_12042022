@@ -15,9 +15,11 @@ export function getPhotographerDetails(data) {
   const urlSearchParams = new URLSearchParams(window.location.search)
   const photographerIdInUrl = urlSearchParams.get('id')
   const photographer = photographers.find(
+    // eslint-disable-next-line eqeqeq
     (element) => element.id == photographerIdInUrl
   );
   const mediaListPhotographer = medias.filter(
+    // eslint-disable-next-line eqeqeq
     (element) => element.photographerId == photographerIdInUrl
   );
   console.log(mediaListPhotographer)

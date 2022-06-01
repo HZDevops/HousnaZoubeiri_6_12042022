@@ -1,11 +1,8 @@
 {
-  "scripts": {
-    "lint": "eslint --ext .html,.js --max-warnings=0 ."
+    "scripts": {
+     "lint": "eslint --max-warnings=0 ."
   },
   "devDependencies": {
-    "eslint": "eslint ."
-  },
-  "dependencies": {
-    "eslint-plugin-html": "^6.2.0"
+    "eslint": "^8.16.0"
   }
 }

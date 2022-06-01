@@ -9,10 +9,21 @@
         "browser": true,
         "es6": true
     },
+    "rules": {
+        "eqeqeq": "warn",
+        "indent": [
+            "warn",
+            2,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "multiline-ternary": [
+            "warn",
+            "always-multiline"
+        ]
+    },
     "extends": [
         "eslint:recommended"
-    ],
-    "ignorePatterns": [
-        "**/*.html"
     ]
 }

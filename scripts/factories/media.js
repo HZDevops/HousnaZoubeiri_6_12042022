@@ -24,7 +24,7 @@ export function mediaFactory (data, photographerId) {
     } else if (video) {
       const videoMedia = `
         <a href="#" aria-label="${title}, cliquez pour visionner la vidéo" class="photographer-media-link">
-          <video id=${id} class="media" controls="controls">
+          <video id=${id} class="media" controls="controls" tabindex="0">
             <source src="../assets/photographers/${photographerId}/${video}" type="video/mp4">
               Your browser does not support the video tag.
           </video>

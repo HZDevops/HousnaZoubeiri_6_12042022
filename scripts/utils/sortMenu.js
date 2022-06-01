@@ -36,35 +36,35 @@ function sortMedias(medias, photographer, photographerId) {
   sortOption.forEach((option, index) => option.addEventListener('click', () => {
     sortList[0].style.display = 'none'
 
-    if (index == 0) {
+    if (index === 0) {
       sortButton.innerHTML = `Popularité` 
       sortButton.appendChild(arrowDown)
       
       mediaSorted = medias.sort((a, b) => { 
-      return b.likes - a.likes
+        return b.likes - a.likes
       })
-      } else if (index == 1) {
+    } else if (index === 1) {
       sortButton.innerHTML = `Date`
       sortButton.appendChild(arrowDown)
 
       mediaSorted = medias.sort((a, b) => { 
-      return new Date(b.date) - new Date(a.date)
+        return new Date(b.date) - new Date(a.date)
       })
-    } else if (index == 2) {
+    } else if (index === 2) {
       sortButton.innerHTML = `Titre`
       sortButton.appendChild(arrowDown)
 
       mediaSorted = medias.sort((a, b) => { 
-      if (a.title < b.title) {
-        return -1;
-      }
-      if (a.title > b.title) {
-        return 1
-      }
-      return 0
-     })
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (a.title > b.title) {
+          return 1
+        }
+        return 0
+      })
     }
-  displaySortedMedia(mediaSorted, photographer, photographerId)
+    displaySortedMedia(mediaSorted, photographer, photographerId)
   }))
 }
 
@@ -93,38 +93,38 @@ function keyboardEvent(medias, photographer, photographerId) {
 
   sortOption.forEach((option, index) =>
     option.addEventListener('keydown', (event) => {
-      if (event.code == 'Enter') {
-      sortList[0].style.display = 'none';
+      if (event.code === 'Enter') {
+        sortList[0].style.display = 'none';
 
-      if (index == 0) {
-        sortButton.innerHTML = `Popularité`;
-        sortButton.appendChild(arrowDown);
+        if (index === 0) {
+          sortButton.innerHTML = `Popularité`;
+          sortButton.appendChild(arrowDown);
 
-        mediaSorted = medias.sort((a, b) => {
-          return b.likes - a.likes;
-        });
-      } else if (index == 1) {
-        sortButton.innerHTML = `Date`;
-        sortButton.appendChild(arrowDown);
+          mediaSorted = medias.sort((a, b) => {
+            return b.likes - a.likes;
+          });
+        } else if (index === 1) {
+          sortButton.innerHTML = `Date`;
+          sortButton.appendChild(arrowDown);
 
-        mediaSorted = medias.sort((a, b) => {
-          return new Date(b.date) - new Date(a.date);
-        });
-      } else if (index == 2) {
-        sortButton.innerHTML = `Titre`;
-        sortButton.appendChild(arrowDown);
+          mediaSorted = medias.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date);
+          });
+        } else if (index === 2) {
+          sortButton.innerHTML = `Titre`;
+          sortButton.appendChild(arrowDown);
 
-        mediaSorted = medias.sort((a, b) => {
-          if (a.title < b.title) {
-            return -1;
-          }
-          if (a.title > b.title) {
-            return 1;
-          }
-          return 0;
-        });
-      }
-      displaySortedMedia(mediaSorted, photographer, photographerId);
+          mediaSorted = medias.sort((a, b) => {
+            if (a.title < b.title) {
+              return -1;
+            }
+            if (a.title > b.title) {
+              return 1;
+            }
+            return 0;
+          });
+        }
+        displaySortedMedia(mediaSorted, photographer, photographerId);
       }
     })
   )

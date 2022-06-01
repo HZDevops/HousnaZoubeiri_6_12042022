@@ -96,24 +96,24 @@ function keyboardEvent(currentMedia, currentMediaName) {
   
   mediaLinks.forEach((mediaLink, index) =>
     mediaLink.addEventListener('keydown', (event) => {
-       if (event.code == 'Enter') {
-         let mediaHtml = currentMedia[index];
-         let mediaName = currentMediaName[index];
+      if (event.code === 'Space') {
+        let mediaHtml = currentMedia[index];
+        let mediaName = currentMediaName[index];
 
-         currentIndex = index;
+        currentIndex = index;
 
-         lightBox.style.display = 'block';
-         lightBoxMedia.innerHTML = `${mediaHtml}`;
-         lightBoxName.innerHTML = `${mediaName}`;
+        lightBox.style.display = 'block';
+        lightBoxMedia.innerHTML = `${mediaHtml}`;
+        lightBoxName.innerHTML = `${mediaName}`;
       }
 
-        // ESCAPE TO CLOSE
-      else if (event.code == 'Escape') {
+      // ESCAPE TO CLOSE
+      else if (event.code === 'Escape') {
         lightBox.style.display = 'none';
       } 
 
       // ARROW RIGHT TO STEP RIGHT
-      else if (event.code == 'ArrowRight') {
+      else if (event.code === 'ArrowRight') {
         currentIndex += 1;
         if (currentIndex > currentMediaName.length - 1) {
           currentIndex = 0;
@@ -128,7 +128,7 @@ function keyboardEvent(currentMedia, currentMediaName) {
       }
       
       // ARROW LEFT TO STEP LEFT
-      else if (event.code == 'ArrowLeft') {
+      else if (event.code === 'ArrowLeft') {
         currentIndex -= 1;
         if (currentIndex < 0) {
           currentIndex = currentMedia.length - 1;
