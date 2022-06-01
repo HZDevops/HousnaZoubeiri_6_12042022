@@ -6,7 +6,7 @@ let currentIndex = 0
 //Display Lightbox
 export function initLightBox(currentMedia, currentMediaName) {
   let medias = Array.from(document.getElementsByClassName('media'))
-  let lightBox = document.getElementById('works-lightbox');
+  let lightBox = document.getElementById('works-lightbox')
   
   const lightBoxBody = `
       <div id="lightbox-body" role="dialog">
@@ -31,8 +31,8 @@ export function initLightBox(currentMedia, currentMediaName) {
       lightBox.style.display = 'block';
       lightBoxMedia.innerHTML = `${mediaHtml}`;
       lightBoxName.innerHTML = `${mediaName}`;
-    }));
-
+    }))
+  
   closeLightBox()
   displayNextMedia(currentMedia, currentMediaName)
   displayPreviousMedia(currentMedia, currentMediaName);
@@ -66,7 +66,6 @@ nextButton.addEventListener('click', () => {
     lightBoxMedia.innerHTML = `${mediaHtml}`
     lightBoxName.innerHTML = `${mediaName}`
   })
-  
 }
 
 //Display previous media in Lightbox
@@ -110,7 +109,6 @@ function keyboardEvent(currentMedia, currentMediaName) {
       let nameSrc = currentMediaName[currentIndex]
 
       lightBoxMedia.innerHTML = `${src}`
-      console.log(lightBoxMedia)
       lightBoxName.innerHTML = `${nameSrc}`
     }
 

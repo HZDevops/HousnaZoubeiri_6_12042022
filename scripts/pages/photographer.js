@@ -77,7 +77,7 @@ async function init() {
   const mediasByPhotographer = photographerData.mediaListPhotographer
 
   displayPhotographerBanner(photographer)
-  dropDownMenu(mediasByPhotographer, photographerId)
+  dropDownMenu(mediasByPhotographer, photographer, photographerId)
   displayModal(photographer)
   displayPhotographerMedia(mediasByPhotographer, photographer, photographerId)
   likeMedia()

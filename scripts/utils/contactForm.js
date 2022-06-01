@@ -34,8 +34,6 @@ export function closeModal() {
 //Keyboard events for accessibility
 function keyboardEvent() {
   document.addEventListener('keydown', (event) => {
-     console.log('bonjour');
-    // ESCAPE TO CLOSE
     if (event.code == 'Escape') {
       modal.style.display = 'none';
       main.style.display = 'block';
