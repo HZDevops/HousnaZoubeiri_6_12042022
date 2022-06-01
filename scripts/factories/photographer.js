@@ -1,9 +1,10 @@
 export function photographerFactory(data) {
   
   const { name, id, city, country, tagline, price, portrait } = data;
+
   const picture = `assets/photographers/Photographers ID Photos/${portrait}`;
 
-  //Display photographer details
+  //Display photographer information
   function getUserInformation() {
     const infoContainer = document.createElement('div');
     infoContainer.classList.add('photograph-header-left');
@@ -16,7 +17,7 @@ export function photographerFactory(data) {
     return infoContainer;
   }
 
-  //Display Photographer ID picture
+  //Display photographer ID picture
   function getUserPicture() {
     const photoContainer = document.createElement('div');
     photoContainer.classList.add('photograph-header-right');

@@ -1,14 +1,12 @@
 export function mediaFactory (data, photographerId) {
-
-  const { id, title, image, video, likes } = data
+  const { id, title, image, video, likes, price } = data;
 
   //Create photographer media cards
   function getMediaCardDOM() {
+    const article = document.createElement('article');
 
-    const article = document.createElement('article')
-       
-    article.classList.add('media-card')
-     
+    article.classList.add('media-card');
+
     if (image) {
       const imageMedia = `
         <a href="#" aria-label='${title}, cliquez pour agrandir' class="photographer-media-link">
@@ -22,11 +20,11 @@ export function mediaFactory (data, photographerId) {
           </button>
         </div>
       `;
-      article.innerHTML = imageMedia
+      article.innerHTML = imageMedia;
     } else if (video) {
       const videoMedia = `
         <a href="#" aria-label="${title}, cliquez pour visionner la vidéo" class="photographer-media-link">
-          <video id=${id} class="media" controls="controls">
+          <video id=${id} class="media" controls="controls" tabindex="0">
             <source src="../assets/photographers/${photographerId}/${video}" type="video/mp4">
               Your browser does not support the video tag.
           </video>
@@ -39,28 +37,35 @@ export function mediaFactory (data, photographerId) {
           </button>
         </div>
       `;
-      article.innerHTML = videoMedia
+      article.innerHTML = videoMedia;
     }
-    return article
+    return article;
   }
 
+  //Calculate total likes media
   function getLikeDOM(medias) {
-    let likesNumber= 0
+    let likesNumber = 0;
 
     medias.forEach((media) => {
-      likesNumber += parseInt(media.likes)
-    })
-    
-    return likesNumber
+      likesNumber += parseInt(media.likes);
+    });
+
+    return likesNumber;
   }
 
-  function getMediaDOM (medias) {
-    let mediaNameArray = []
-    let mediaHtmlArray = []
-   
-    let mediaDOM = Array.from(document.getElementsByClassName('media'))
+  //Get photographer price
+  function getPhotographerPrice() {
+    console.log(price);
+  }
+
+  //Put photographer HTML media elements and media names in an array
+  function getMediaDOM(medias) {
+    let mediaNameArray = [];
+    let mediaHtmlArray = [];
+
+    let mediaDOM = Array.from(document.getElementsByClassName('media'));
     for (let i = 0; i < mediaDOM.length; i++) {
-      mediaHtmlArray.push(mediaDOM[i].outerHTML);
+      mediaHtmlArray.push(mediaDOM[i].outerHTML)
     }
 
     medias.forEach((media) => {
@@ -68,10 +73,11 @@ export function mediaFactory (data, photographerId) {
     })
     return { mediaHtmlArray, mediaNameArray }
   }
-  
+
   return {
     getMediaCardDOM,
     getLikeDOM,
-    getMediaDOM
+    getPhotographerPrice,
+    getMediaDOM,
   }
 }

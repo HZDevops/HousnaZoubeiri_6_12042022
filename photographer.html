@@ -22,12 +22,12 @@
       <div class="sort-container">
         <span id="sort-text">Trier par</span>
         <div id="sort-wrapper">
-          <button class="sort-btn" aria-haspopup="listbox">Popularité<span class="fas fa-chevron-down arrow-down-open" role='button'></span></button>
+          <button class="sort-btn" aria-label="listbox">Popularité<span class="fas fa-chevron-down arrow-down-open"></span></button>
           <ul class="sort-list" role="listbox">
-            <li class="sort-option border-sort-top" role="option">Popularité <span class="fas fa-chevron-up arrow-up-close"></span>
+            <li id="option-one" class="sort-option border-sort-top" role="option" tabindex="0">Popularité <span class="fas fa-chevron-up arrow-up-close"></span>
             </li>
-            <li class="sort-option" role="option">Date</li>
-            <li class="sort-option border-sort-bottom" role="option">Titre</li>
+            <li class="sort-option" role="option" tabindex="0">Date</li>
+            <li class="sort-option border-sort-bottom" role="option" tabindex="0">Titre</li>
           </ul>
         </div>
       </div>
@@ -70,7 +70,7 @@
       <div class="modal-confirmation-content">
         <div class="modal-confirmation-body">
           <p>Formulaire de contact envoyé!</p>
-          <button id="close-btn-confirmation"> Fermer</button>
+          <button id="close-btn-confirmation" aria-label="Fermer"> Fermer</button>
         </div>
       </div>
     </div>
