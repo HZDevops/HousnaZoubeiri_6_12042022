@@ -6,7 +6,7 @@ export function dropDownMenu(medias, photographer, photographerId) {
   let openMenu = document.getElementsByClassName('sort-btn')
   let closeMenu = document.getElementsByClassName('arrow-up-close')
   let sortList = document.getElementsByClassName('sort-list')
-  console.log(photographerId)
+
   keyboardEvent(medias, photographer, photographerId)
 
   if (openMenu) {
@@ -80,8 +80,7 @@ function displaySortedMedia(mediasSorted, photographer, photographerId) {
   likeMedia()
 }
 
-
-//Keyboard events for drop-down menu accessibility
+//Handle keyboard events for drop-down menu navigation
 function keyboardEvent(medias, photographer, photographerId) {
   let mediaSorted = []
 
@@ -126,6 +125,7 @@ function keyboardEvent(medias, photographer, photographerId) {
         });
       }
       displaySortedMedia(mediaSorted, photographer, photographerId);
-      }})
+      }
+    })
   )
 }

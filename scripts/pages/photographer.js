@@ -64,7 +64,6 @@ export function displayPhotographerMedia(medias, photographer,photographerId) {
   likeSection.innerHTML = likeCounterSection
   
   initLightBox(mediaHtml, mediaName)
-
 }
 
 //Display photographer page
