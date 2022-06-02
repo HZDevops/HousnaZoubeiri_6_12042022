@@ -1,5 +1,5 @@
 export function mediaFactory (data, photographerId) {
-  const { id, title, image, video, likes, price } = data;
+  const { id, title, image, video, likes } = data;
 
   //Create photographer media cards
   function getMediaCardDOM() {
@@ -53,11 +53,6 @@ export function mediaFactory (data, photographerId) {
     return likesNumber;
   }
 
-  //Get photographer price
-  function getPhotographerPrice() {
-    console.log(price);
-  }
-
   //Put photographer HTML media elements and media names in an array
   function getMediaDOM(medias) {
     let mediaNameArray = [];
@@ -77,7 +72,6 @@ export function mediaFactory (data, photographerId) {
   return {
     getMediaCardDOM,
     getLikeDOM,
-    getPhotographerPrice,
     getMediaDOM,
   }
 }

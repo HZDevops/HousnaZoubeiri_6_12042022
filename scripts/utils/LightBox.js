@@ -123,7 +123,6 @@ function keyboardEvent(currentMedia, currentMediaName) {
         let nameSrc = currentMediaName[currentIndex];
 
         lightBoxMedia.innerHTML = `${src}`;
-        console.log(lightBoxMedia);
         lightBoxName.innerHTML = `${nameSrc}`;
       }
       
